@@ -114,7 +114,7 @@ Equations (GRU with default activations):
   - zt = sigmoid(Wz*Xt + Rz*Ht-1 + Wbz + Rbz)
   - rt = sigmoid(Wr*Xt + Rr*Ht-1 + Wbr + Rbr)
   - ht = tanh(Wh*Xt + rt*(Rh*Ht-1 + Rbh) + Wbh)
-  - H = (1 - zt) (.) ht + it (.) Ht-1
+  - Ht = (1 - zt) (.) ht + it (.) Ht-1
 )DOC")
     .Attr("activations", "A list of 3 (or 6 if bidirectional) activation functions "
           "for update, reset, and hidden gates. The activation functions must be "
@@ -172,7 +172,7 @@ Equations (forward LSTM with default activations and peepholes):
   - ct = tanh(Wc*Xt + Rc*Ht-1 + Wbc + Rbc)
   - Ct = ft (.) Ct-1 + it (.) ct
   - ot = sigmoid(Wo*Xt + Ro*Ht-1 + Po (.) Ct + Wbo + Rbo)
-  - H = ot (.) tanh(Ct)
+  - Ht = ot (.) tanh(Ct)
 )DOC")
     .Attr("activations", "A list of 4 (or 8 if bidirectional) activation functions "
           "for input, output, forget, and cell gates. The activation functions must "
