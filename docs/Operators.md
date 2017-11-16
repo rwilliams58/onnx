@@ -110,7 +110,7 @@
 ### <a name="Abs"></a><a name="abs">**Abs**</a>
 
   Absolute takes one input data (Tensor<T>) and produces one output data
-  (Tensor<T>) where the absolute is, y = abs(x), is applied to
+  (Tensor<T>). The absolute, y = abs(x), is applied to
   the tensor elementwise.
 
 #### Inputs
@@ -131,7 +131,7 @@
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -159,29 +159,25 @@ expect(node, inputs=[x], outputs=[y],
 ### <a name="Add"></a><a name="add">**Add**</a>
 
   Performs element-wise binary addition (with limited broadcast support).
-  
-  If necessary the right-hand-side argument will be broadcasted to match the
-  shape of left-hand-side argument. When broadcasting is specified, the second
-  tensor can either be of size 1 (a scalar value), or having its shape as a
-  contiguous subset of the first tensor's shape. The starting of the mutually
-  equal shape is specified by the argument "axis", and if it is not set, suffix
-  matching is assumed. 1-dim expansion doesn't work yet.
-  
+
+  If necessary, the right-hand-side argument will be broadcasted to match the
+  shape of the left-hand-side argument. When broadcasting is specified, the second tensor can either be of size 1 (a scalar value), or have its shape as a contiguous subset of the first tensor's shape. The starting of the mutually equal shape is specified by the argument "axis", and if it is not set, suffix matching is assumed. 1-dim expansion doesn't work yet.
+
   For example, the following tensor shapes are supported (with broadcast=1):
-  
+
     shape(A) = (2, 3, 4, 5), shape(B) = (,), i.e. B is a scalar
     shape(A) = (2, 3, 4, 5), shape(B) = (5,)
     shape(A) = (2, 3, 4, 5), shape(B) = (4, 5)
     shape(A) = (2, 3, 4, 5), shape(B) = (3, 4), with axis=1
     shape(A) = (2, 3, 4, 5), shape(B) = (2), with axis=0
-  
+
   Attribute `broadcast=1` needs to be passed to enable broadcasting.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>If set, defines the broadcast dimensions. See doc for details.</dd>
+<dd>If set, this defines the broadcast dimensions. See doc for details.</dd>
 <dt><tt>broadcast</tt> : int</dt>
 <dd>Pass 1 to enable broadcasting</dd>
 </dl>
@@ -190,23 +186,23 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>First operand, should share the type with the second operand.</dd>
+<dd>The first operand. It should share the type with the second operand.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Second operand. With broadcasting can be of smaller size than A. If broadcasting is disabled it should be of the same size.</dd>
+<dd>The second operand. Broadcasting can be a smaller size than A. If broadcasting is disabled, it should be the same size.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>C</tt> : T</dt>
-<dd>Result, has same dimensions and type as A</dd>
+<dd>This is the result. It has the same dimensions and type as A</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -255,16 +251,16 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
   Returns the tensor resulted from performing the `and` logical operation
   elementwise on the input tensors `A` and `B`.
-  
+
   If broadcasting is enabled, the right-hand-side argument will be broadcasted
-  to match the shape of left-hand-side argument. See the doc of `Add` for a
+  to match the shape of left-hand-side argument. See the documentation on `Add` for a
   detailed description of the broadcasting rules.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>If set, defines the broadcast dimensions.</dd>
+<dd>If set, this defines the broadcast dimensions.</dd>
 <dt><tt>broadcast</tt> : int</dt>
 <dd>Enable broadcasting</dd>
 </dl>
@@ -273,9 +269,9 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>Left input tensor for the logical operator.</dd>
+<dd>The left input tensor for the logical operator.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Right input tensor for the logical operator.</dd>
+<dd>The right input tensor for the logical operator.</dd>
 </dl>
 
 #### Outputs
@@ -289,26 +285,26 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>T</tt> : tensor(bool)</dt>
-<dd>Constrains input to boolean tensor.</dd>
+<dd>Constrains input to a boolean tensor.</dd>
 <dt><tt>T1</tt> : tensor(bool)</dt>
-<dd>Constrains output to boolean tensor.</dd>
+<dd>Constrains output to a boolean tensor.</dd>
 </dl>
 
 
 ### <a name="ArgMax"></a><a name="argmax">**ArgMax**</a>
 
-  Computes the indices of the max elements of the input tensor's element along the 
-  provided axis. The resulted tensor has the same rank as the input if keepdims equal 1. 
-  If keepdims equal 0, then the resulted tensor have the reduced dimension pruned. 
+  Computes the indices of the max elements of the input tensor's element along the
+  provided axis. The resulted tensor has the same rank as the input if keepdims equals 1.
+  If keepdims equals 0, then the resulted tensor has the reduced dimension pruned.
   The type of the output tensor is integer.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>The axis in which to compute the arg indices</dd>
+<dd>The axis in which to compute the arg indices.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Determines whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -329,24 +325,24 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ArgMin"></a><a name="argmin">**ArgMin**</a>
 
-  Computes the indices of the min elements of the input tensor's element along the 
-  provided axis. The resulted tensor has the same rank as the input if keepdims equal 1. 
-  If keepdims equal 0, then the resulted tensor have the reduced dimension pruned. 
+  Computes the indices of the min elements of the input tensor's element along the
+  provided axis. The resulted tensor has the same rank as the input if keepdims equals 1.
+  If keepdims equals 0, then the resulted tensor have the reduced dimension pruned.
   The type of the output tensor is integer.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>The axis in which to compute the arg indices</dd>
+<dd>The axis in which to compute the arg indices.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -367,27 +363,23 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="AveragePool"></a><a name="averagepool">**AveragePool**</a>
 
-  AveragePool consumes an input tensor X and applies average pooling across the
-   the tensor according to kernel sizes, stride sizes, and pad lengths.
-   average pooling consisting of computing the average on all values of a 
-   subset of the input tensor according to the kernel size and downsampling the
-   data into the output tensor Y for further processing.
+  AveragePool consumes an input tensor, X, and applies average pooling across the tensor according to kernel sizes, stride sizes, and pad lengths. The average pooling consists of computing the average on all values of a subset of the input tensor according to the kernel size, and downsampling the data into the output tensor, Y, for further processing.
 
 #### Attributes
 
 <dl>
 <dt><tt>auto_pad</tt> : string</dt>
-<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID. Where SAME_UPPER or SAME_LOWER mean pad the input so that the ouput size match the input.In case of odd number add the extra padding at the end for SAME_UPPER and at the begining for SAME_LOWER. VALID mean no padding. DEPRECATION NOTE: auto_pad is only intended to support legacy uses, and for framework authors, one is explicitly encouraged to use explicit padding specified in the pads attribute.</dd>
+<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID. SAME_UPPER or SAME_LOWER indicates pading the input so that the ouput size matches the input. If an odd number, extra padding is added at the end for SAME_UPPER, and at the begining for SAME_LOWER. VALID indicates no padding. DEPRECATION NOTE: auto_pad is only intended to support legacy uses. For framework authors, it's encouraged to use explicit padding specified in the pads attribute.</dd>
 <dt><tt>kernel_shape</tt> : list of ints</dt>
 <dd>The size of the kernel along each axis.</dd>
 <dt><tt>pads</tt> : list of ints</dt>
-<dd>Padding for lower and upper side along each axis, it can take any value greater than or equal to 0. The value represent the number of pixels added to the lower and upper part of the corresponding axis. So `pads` will have two values per axis, first value corresponding to the number of pixels added to the begining of the axis and the second value corresponding to the number of pixels add at the end of the axis. This attribute cannot be used simultaneously with auto_pad attribute.</dd>
+<dd>Padding for lower and upper side along each axis. It can take any value greater than or equal to 0. The value represents the number of pixels added to the lower and upper part of the corresponding axis. So, `pads` will have two values per axis – the first value corresponding to the number of pixels added to the begining of the axis, and the second value corresponding to the number of pixels added at the end of the axis. This attribute cannot be used simultaneously with the auto_pad attribute.</dd>
 <dt><tt>strides</tt> : list of ints</dt>
 <dd>Stride along each axis.</dd>
 </dl>
@@ -396,7 +388,7 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator; dimensions for image case are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non image case, the dimension are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>The input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
@@ -410,7 +402,7 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -418,34 +410,34 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
   Carries out batch normalization as described in the paper
   https://arxiv.org/abs/1502.03167. Depending on the mode it is being run,
-  there are multiple cases for the number of outputs, which we list below:
-  
+  there are multiple cases for the number of outputs, listed below:
+
   Output case #1: Y, mean, var, saved_mean, saved_var (training mode)
   Output case #2: Y (test mode)
-      
+
 
 #### Attributes
 
 <dl>
 <dt><tt>epsilon</tt> : float</dt>
-<dd>The epsilon value to use to avoid division by zero.</dd>
+<dd>The epsilon value used to avoid division by zero.</dd>
 <dt><tt>is_test</tt> : int</dt>
-<dd>If set to nonzero, run spatial batch normalization in test mode.</dd>
+<dd>If set to non-zero, run spatial batch normalization in test mode.</dd>
 <dt><tt>momentum</tt> : float</dt>
-<dd>Factor used in computing the running mean and variance.e.g., running_mean = running_mean * momentum + mean * (1 - momentum)</dd>
+<dd>Factor used in computing the running mean and variance. E.g., running_mean = running_mean * momentum + mean * (1 - momentum)</dd>
 <dt><tt>spatial</tt> : int</dt>
-<dd>If true, compute the mean and variance across all spatial elements If false, compute the mean and variance across per feature.</dd>
+<dd>If true, compute the mean and variance across all spatial elements. If false, compute the mean and variance across per feature.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input 4-dimensional tensor of shape NCHW or NHWC depending on the order parameter.</dd>
+<dd>A 4-dimensional tensor of shape NCHW or NHWC depending on the order parameter.</dd>
 <dt><tt>scale</tt> : T</dt>
-<dd>The scale as a 1-dimensional tensor of size C to be applied to the output.</dd>
+<dd>The scale as a 1-dimensional tensor of size C, applied to the output.</dd>
 <dt><tt>bias</tt> : T</dt>
-<dd>The bias as a 1-dimensional tensor of size C to be applied to the output.</dd>
+<dd>The bias as a 1-dimensional tensor of size C, applied to the output.</dd>
 <dt><tt>mean</tt> : T</dt>
 <dd>The running mean (training) or the estimated mean (testing) as a 1-dimensional tensor of size C.</dd>
 <dt><tt>var</tt> : T</dt>
@@ -458,20 +450,20 @@ expect(node, inputs=[x, y], outputs=[x + y],
 <dt><tt>Y</tt> : T</dt>
 <dd>The output 4-dimensional tensor of the same shape as X.</dd>
 <dt><tt>mean</tt> : T</dt>
-<dd>The running mean after the BatchNormalization operator. Must be in-place with the input mean. Should not be used for testing.</dd>
+<dd>The running mean after the BatchNormalization operator. Must be in-place with the input mean. This should not be used for testing.</dd>
 <dt><tt>var</tt> : T</dt>
-<dd>The running variance after the BatchNormalization operator. Must be in-place with the input var. Should not be used for testing.</dd>
+<dd>The running variance after the BatchNormalization operator. Must be in-place with the input var. This should not be used for testing.</dd>
 <dt><tt>saved_mean</tt> : T</dt>
-<dd>Saved mean used during training to speed up gradient computation. Should not be used for testing.</dd>
+<dd>Saved mean used during training to speed up gradient computation. This should not be used for testing.</dd>
 <dt><tt>saved_var</tt> : T</dt>
-<dd>Saved variance used during training to speed up gradient computation. Should not be used for testing.</dd>
+<dd>Saved variance used during training to speed up gradient computation. This should not be used for testing.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -481,16 +473,16 @@ expect(node, inputs=[x, y], outputs=[x + y],
   specified by the 'to' argument and returns an output tensor of the same size in
   the converted type. The 'to' argument must be one of the data types specified
   in the 'DataType' enum field in the TensorProto message. If the 'to' argument
-  is not provided or is not one of the enumerated types in DataType, Caffe2
+  is not provided, or is not one of the enumerated types in DataType, Caffe2
   throws an Enforce error.
-  
+
   NOTE: Casting to and from strings is not supported yet.
 
 #### Attributes
 
 <dl>
 <dt><tt>to</tt> : string</dt>
-<dd>The data type to which the elements of the input tensor are cast.Strictly must be one of the types from DataType enum in TensorProto</dd>
+<dd>The data type to which the elements of the input tensor are cast. Strictly must be one of the types from DataType enum in TensorProto.</dd>
 </dl>
 
 #### Inputs
@@ -504,23 +496,23 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>output</tt> : T2</dt>
-<dd>Output tensor with the same shape as input with type specified by the 'to' argument</dd>
+<dd>Output tensor with the same shape as input, with the type specified by the 'to' argument</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T1</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input types to float tensors.</dd>
+<dd>Constrains input types to float tensors.</dd>
 <dt><tt>T2</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain output types to float tensors.</dd>
+<dd>Constrains output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Ceil"></a><a name="ceil">**Ceil**</a>
 
   Ceil takes one input data (Tensor<T>) and produces one output data
-  (Tensor<T>) where the ceil is, y = ceil(x), is applied to
+  (Tensor<T>) where the ceil, y = ceil(x), is applied to
   the tensor elementwise.
 
 #### Inputs
@@ -541,13 +533,13 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Clip"></a><a name="clip">**Clip**</a>
 
-  Clip operator limits the given input within an interval. The interval is
+  The Clip operator limits the given input within an interval. The interval is
   specified with arguments 'min' and 'max'. They default to
   numeric_limits::lowest() and numeric_limits::max() respectively. The clipping
   operation can be done in in-place fashion too, where the input and output blobs
@@ -557,63 +549,63 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>max</tt> : float</dt>
-<dd>Maximum value, above which element is replaced by max</dd>
+<dd>Maximum value, above which element is replaced by max.</dd>
 <dt><tt>min</tt> : float</dt>
-<dd>Minimum value, under which element is replaced by min</dd>
+<dd>Minimum value, under which element is replaced by min.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor whose elements to be clipped</dd>
+<dd>The input tensor whose elements are to be clipped.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor with clipped input elements</dd>
+<dd>The output tensor with clipped input elements.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Concat"></a><a name="concat">**Concat**</a>
 
-  Concatenate a list of tensors into a single tensor
+  Concatenates a list of tensors into a single tensor.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>Which axis to concat on</dd>
+<dd>Indicates the axis to concatenate on.</dd>
 </dl>
 
 #### Inputs (1 - &#8734;)
 
 <dl>
 <dt><tt>inputs...</tt> : T</dt>
-<dd>List of tensors for concatenation</dd>
+<dd>A list of tensors for concatenation.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>concat_result</tt> : T</dt>
-<dd>Concatenated tensor</dd>
+<dd>The concatenated tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain output types to float tensors.</dd>
+<dd>Constrains output types to float tensors.</dd>
 </dl>
 
 
@@ -635,14 +627,14 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor containing the same value of the provided tensor.</dd>
+<dd>An output tensor containing the same value of the provided tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -681,15 +673,15 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>auto_pad</tt> : string</dt>
-<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID. Where SAME_UPPER or SAME_LOWER mean pad the input so that the ouput size match the input.In case of odd number add the extra padding at the end for SAME_UPPER and at the begining for SAME_LOWER. VALID mean no padding. DEPRECATION NOTE: auto_pad is only intended to support legacy uses, and for framework authors, one is explicitly encouraged to use explicit padding specified in the pads attribute.</dd>
+<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID, where SAME_UPPER or SAME_LOWER indicates padding the input so that the ouput size matches the input. If an odd number, extra padding is added at the end for SAME_UPPER, and at the begining for SAME_LOWER. VALID indicates no padding. DEPRECATION NOTE: auto_pad is only intended to support legacy uses. For framework authors, it's encouraged to use explicit padding specified in the pads attribute.</dd>
 <dt><tt>dilations</tt> : list of ints</dt>
-<dd>dilation value along each axis of the filter.</dd>
+<dd>The dilation value along each axis of the filter.</dd>
 <dt><tt>group</tt> : int</dt>
-<dd>number of groups input channels and output channels are divided into</dd>
+<dd>The number of groups input channels and output channels are divided into.</dd>
 <dt><tt>kernel_shape</tt> : list of ints</dt>
 <dd>The shape of the convolution kernel.</dd>
 <dt><tt>pads</tt> : list of ints</dt>
-<dd>Padding for lower and upper side along each axis, it can take any value greater than or equal to 0. The value represent the number of pixels added to the lower and upper part of the corresponding axis. So `pads` will have two values per axis, first value corresponding to the number of pixels added to the begining of the axis and the second value corresponding to the number of pixels add at the end of the axis. The order should be axis_0_begin, axis_0_end, axis_1_begin, ..., axis_n_begin, axis_n_end, n is kernel's dimension.This attribute cannot be used simultaneously with auto_pad attribute.</dd>
+<dd>Padding for lower and upper side along each axis. It can take any value greater than or equal to 0. The value represents the number of pixels added to the lower and upper part of the corresponding axis. So, `pads` will have two values per axis – the first value corresponding to the number of pixels added to the begining of the axis, and the second value corresponding to the number of pixels add at the end of the axis. The order should be axis_0_begin, axis_0_end, axis_1_begin, ..., axis_n_begin, axis_n_end, where n is the kernel's dimension. This attribute cannot be used simultaneously with the auto_pad attribute.</dd>
 <dt><tt>strides</tt> : list of ints</dt>
 <dd>stride along each axis.</dd>
 </dl>
@@ -698,25 +690,25 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from previous layer; has size (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and width. Note that this is for the 2D image.Otherwise the size is (N x D1 x D2 ... x Dn)</dd>
+<dd>The input data tensor from the previous layer. It has the size (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and width. Note that this is for the 2D image. Otherwise, the size is (N x D1 x D2 ... x Dn)</dd>
 <dt><tt>weights</tt> : T</dt>
-<dd>The weight tensor that will be used in the convolutions; has size (M x C x kH x kW), where C is the number of channels, and kH and kW are the height and width of the kernel, and M is the number of feature maps. For more than 2 dimensions, the kernel shape will be (M x C x k1 x k2 x ... x kn), where is the dimension of the kernel</dd>
+<dd>The weight tensor that will be used in the convolutions. It has the size (M x C x kH x kW), where C is the number of channels, and kH and kW are the height and width of the kernel, and M is the number of feature maps. For more than 2 dimensions, the kernel shape will be (M x C x k1 x k2 x ... x kn), where n is the dimension of the kernel.</dd>
 <dt><tt>bias</tt> : T</dt>
-<dd>Optional 1D bias to be added to the convolution, has size of M.</dd>
+<dd>Optional 1D bias to be added to the convolution with a size M.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output data tensor that contains the result of the convolution. The output dimensions are functions of the kernel size, stride size, and pad lengths.</dd>
+<dd>An output data tensor that contains the result of the convolution. The output dimensions are functions of the kernel size, stride size, and pad lengths.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains the input and output types to float tensors.</dd>
 </dl>
 
 
@@ -729,17 +721,17 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>auto_pad</tt> : string</dt>
-<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID. Where SAME_UPPER or SAME_LOWER mean pad the input so that the ouput size match the input.In case of odd number add the extra padding at the end for SAME_UPPER and at the begining for SAME_LOWER. VALID mean no padding.</dd>
+<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID. SAME_UPPER or SAME_LOWER indicates pading the input so that the ouput size matches the input. If an odd number, extra padding is added at the end for SAME_UPPER, and at the begining for SAME_LOWER. VALID indicates no padding.</dd>
 <dt><tt>dilations</tt> : list of ints</dt>
-<dd>dilation value along each axis of the filter.</dd>
+<dd>The dilation value along each axis of the filter.</dd>
 <dt><tt>group</tt> : int</dt>
-<dd>number of groups input channels and output channels are divided into</dd>
+<dd>The number of groups input channels and output channels are divided into</dd>
 <dt><tt>kernel_shape</tt> : list of ints</dt>
 <dd>The shape of the convolution kernel.</dd>
 <dt><tt>output_shape</tt> : list of ints</dt>
 <dd>The shape of the output.</dd>
 <dt><tt>pads</tt> : list of ints</dt>
-<dd>Padding for lower and upper side along each axis, it can take any value greater than or equal to 0. The value represent the number of pixels added to the lower and upper part of the corresponding axis. So `pads` will have two values per axis, first value corresponding to the number of pixels added to the begining of the axis and the second value corresponding to the number of pixels add at the end of the axis. This attribute cannot be used simultaneously with auto_pad attribute.</dd>
+<dd>Padding for the lower and upper side along each axis. It can take any value greater than or equal to 0. The value represents the number of pixels added to the lower and upper part of the corresponding axis. So, `pads` will have two values per axis – the first value corresponding to the number of pixels added to the begining of the axis, and the second value corresponding to the number of pixels added at the end of the axis. This attribute cannot be used simultaneously with auto_pad attribute.</dd>
 <dt><tt>strides</tt> : list of ints</dt>
 <dd>stride along each axis.</dd>
 </dl>
@@ -748,11 +740,11 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from previous layer; has size (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and width. Note that this is for the 2D image.Otherwise the size is (N x D1 x D2 ... x Dn)</dd>
+<dd>The input data tensor from previous layer with the size (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and width. Note that this is for a 2D image. Otherwise, the size is (N x D1 x D2 ... x Dn)</dd>
 <dt><tt>weights</tt> : T</dt>
-<dd>The weight tensor that will be used in the convolutions; has size (C x M x kH x kW), where C is the number of channels, and kH and kW are the height and width of the kernel, and M is the number of feature maps. For more than 2 dimensions, the kernel shape will be (C x M x k1 x k2 x ... x kn), where is the dimension of the kernel</dd>
+<dd>The weight tensor that will be used in the convolutions with size (C x M x kH x kW), where C is the number of channels, and kH and kW are the height and width of the kernel, and M is the number of feature maps. For more than 2 dimensions, the kernel shape will be (C x M x k1 x k2 x ... x kn), where n is the dimension of the kernel</dd>
 <dt><tt>bias</tt> : T</dt>
-<dd>Optional 1D bias to be added to the convolution, has size of C.</dd>
+<dd>Optional 1D bias to be added to the convolution with a size C.</dd>
 </dl>
 
 #### Outputs
@@ -766,15 +758,15 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="DepthToSpace"></a><a name="depthtospace">**DepthToSpace**</a>
 
-  DepthToSpace rearranges (permutes) data from depth into blocks of spatial data. 
-  This is the reverse transformation of SpaceToDepth. More specifically, this op outputs a copy of 
-  the input tensor where values from the depth dimension are moved in spatial blocks to the height 
+  DepthToSpace rearranges (permutes) data from depth into blocks of spatial data.
+  This is the reverse transformation of SpaceToDepth. More specifically, this operator outputs a copy of
+  the input tensor, where values from the depth dimension are moved in spatial blocks to the height
   and width dimensions.
 
 #### Attributes
@@ -788,75 +780,75 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor of [N,C,H,W], where N is the batch axis, C is the channel or depth, H is the height and W is the width.</dd>
+<dd>An input tensor of [N,C,H,W], where N is the batch axis, C is the channel or depth, H is the height and W is the width.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of [N, C/(blocksize * blocksize), H * blocksize, W * blocksize].</dd>
+<dd>An output tensor of [N, C/(blocksize * blocksize), H * blocksize, W * blocksize].</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input types to float tensors.</dd>
+<dd>Constrains input types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Div"></a><a name="div">**Div**</a>
 
   Performs element-wise binary division (with limited broadcast support).
-  
-  If necessary the right-hand-side argument will be broadcasted to match the
+
+  If necessary, the right-hand-side argument will be broadcasted to match the
   shape of left-hand-side argument. When broadcasting is specified, the second
-  tensor can either be of size 1 (a scalar value), or having its shape as a
+  tensor can either be of size 1 (a scalar value), or have its shape as a
   contiguous subset of the first tensor's shape. The starting of the mutually
   equal shape is specified by the argument "axis", and if it is not set, suffix
   matching is assumed. 1-dim expansion doesn't work yet.
-  
+
   For example, the following tensor shapes are supported (with broadcast=1):
-  
+
     shape(A) = (2, 3, 4, 5), shape(B) = (,), i.e. B is a scalar
     shape(A) = (2, 3, 4, 5), shape(B) = (5,)
     shape(A) = (2, 3, 4, 5), shape(B) = (4, 5)
     shape(A) = (2, 3, 4, 5), shape(B) = (3, 4), with axis=1
     shape(A) = (2, 3, 4, 5), shape(B) = (2), with axis=0
-  
+
   Attribute `broadcast=1` needs to be passed to enable broadcasting.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>If set, defines the broadcast dimensions. See doc for details.</dd>
+<dd>If set, this defines the broadcast dimensions. See doc for details.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Pass 1 to enable broadcasting</dd>
+<dd>Pass 1 to enable broadcasting.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>First operand, should share the type with the second operand.</dd>
+<dd>The first operand. It should share the type with the second operand.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Second operand. With broadcasting can be of smaller size than A. If broadcasting is disabled it should be of the same size.</dd>
+<dd>The second operand. With broadcasting, this can be a smaller size than A. If broadcasting is disabled, it should be the same size as A.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>C</tt> : T</dt>
-<dd>Result, has same dimensions and type as A</dd>
+<dd>The result with the same dimensions and type as A.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -864,17 +856,17 @@ expect(node, inputs=[], outputs=[values],
 
   Dropout takes one input data (Tensor<float>) and produces two Tensor outputs,
   output (Tensor<float>) and mask (Tensor<bool>). Depending on whether it is in
-  test mode or not, the output Y will either be a random dropout, or a simple
+  test mode or not, the output, Y, will either be a random dropout or a simple
   copy of the input. Note that our implementation of Dropout does scaling in
-  the training phase, so during testing nothing needs to be done.
+  the training phase, so nothing needs to be done during testing.
 
 #### Attributes
 
 <dl>
 <dt><tt>is_test</tt> : int</dt>
-<dd>(int, default 0) if nonzero, run dropout in test mode where the output is simply Y = X.</dd>
+<dd>(int, default 0) If non-zero, run dropout in test mode where the output is simply Y = X.</dd>
 <dt><tt>ratio</tt> : float</dt>
-<dd>(float, default 0.5) the ratio of random dropout</dd>
+<dd>(float, default 0.5) The ratio of random dropout.</dd>
 </dl>
 
 #### Inputs
@@ -890,14 +882,14 @@ expect(node, inputs=[], outputs=[values],
 <dt><tt>output</tt> : T</dt>
 <dd>The output.</dd>
 <dt><tt>mask</tt> : T</dt>
-<dd>The output mask. If is_test is nonzero, this output is not filled.</dd>
+<dd>The output mask. If is_test is non-zero, this output is not filled.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -906,120 +898,120 @@ expect(node, inputs=[], outputs=[values],
   Elu takes one input data (Tensor<T>) and produces one output data
   (Tensor<T>) where the function `f(x) = alpha * (exp(x) - 1.) for x <
   0`, `f(x) = x for x >= 0`., is applied to the tensor elementwise.
-  
+
 
 #### Attributes
 
 <dl>
 <dt><tt>alpha</tt> : float</dt>
-<dd>Coefficient of ELU default to 1.0.</dd>
+<dd>The coefficient of ELU defaulting to 1.0.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>1D input tensor</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>1D input tensor</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Equal"></a><a name="equal">**Equal**</a>
 
-  Returns the tensor resulted from performing the `equal` logical operation
+  Returns the tensor resulting from performing the `equal` logical operation
   elementwise on the input tensors `A` and `B`.
-  
+
   If broadcasting is enabled, the right-hand-side argument will be broadcasted
-  to match the shape of left-hand-side argument. See the doc of `Add` for a
+  to match the shape of left-hand-side argument. See the documentation on `Add` for a
   detailed description of the broadcasting rules.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>If set, defines the broadcast dimensions.</dd>
+<dd>If set, this defines the broadcast dimensions.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Enable broadcasting</dd>
+<dd>Enables broadcasting.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>Left input tensor for the logical operator.</dd>
+<dd>The left input tensor for the logical operator.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Right input tensor for the logical operator.</dd>
+<dd>The right input tensor for the logical operator.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>C</tt> : T1</dt>
-<dd>Result tensor.</dd>
+<dd>The result tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrains input to float tensors.</dd>
+<dd>Constrains the input to float tensors.</dd>
 <dt><tt>T1</tt> : tensor(bool)</dt>
-<dd>Constrains output to boolean tensor.</dd>
+<dd>Constrains the output to a boolean tensor.</dd>
 </dl>
 
 
 ### <a name="Exp"></a><a name="exp">**Exp**</a>
 
   Calculates the exponential of the given input tensor, element-wise. This
-  operation can be done in an in-place fashion too, by providing the same input
+  operation can be done in an in-place fashion by providing the same input
   and output blobs.
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>The input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The exponential of the input tensor computed element-wise</dd>
+<dd>The exponential of the input tensor, computed element-wise.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Flatten"></a><a name="flatten">**Flatten**</a>
 
-  Flattens the input tensor into a 2D matrix. If input tensor has shape
-  (d_0, d_1, ... d_n) then the output will have shape
+  Flattens the input tensor into a 2D matrix. If the input tensor has the shape
+  (d_0, d_1, ... d_n), then the output will have the shape
   (d_0 X d_1 ... d_(axis-1), d_axis X d_(axis+1) ... X dn).
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>(Default to 1) Indicate up to which input dimensions (exclusive) should be flattened to the outer dimension of the output</dd>
+<dd>(Defaults to 1) Indicates up to which input dimensions (exclusive) should be flattened to the outer dimension of the output.</dd>
 </dl>
 
 #### Inputs
@@ -1033,139 +1025,139 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>A 2D tensor with the contents of the input tensor, with input dimensions up to axis flattened to the outer dimension of the output and remaining input dimensions flattened into the inner dimension of the output.</dd>
+<dd>A 2D tensor with the contents of the input tensor, with input dimensions up to axis flattened to the outer dimension of the output, and remaining input dimensions flattened into the inner dimension of the output.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Floor"></a><a name="floor">**Floor**</a>
 
   Floor takes one input data (Tensor<T>) and produces one output data
-  (Tensor<T>) where the floor is, y = floor(x), is applied to
+  (Tensor<T>) where the floor, y = floor(x), is applied to
   the tensor elementwise.
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="GRU"></a><a name="gru">**GRU**</a>
 
-  Computes an one-layer GRU. This operator is usually supported via some custom
-  implementation such as CuDNN.
-  
+  Computes a one-layer GRU. This operator is usually supported via some custom
+  implementation, such as CuDNN.
+
   Notations:
-  
+
   `X` - input tensor
-  
+
   `z` - update gate
-  
+
   `r` - reset gate
-  
+
   `h` - hidden gate
-  
+
   `t` - time step (t-1 means previous time step)
-  
+
   `W[zrh]` - W parameter weight matrix for update, reset, and hidden gates
-  
+
   `R[zrh]` - R recurrence weight matrix for update, reset, and hidden gates
-  
+
   `Wb[zrh]` - W bias vectors for update, reset, and hidden gates
-  
+
   `Rb[zrh]` - R bias vectors for update, reset, and hidden gates
-  
+
   `WB[zrh]` - W parameter weight matrix for backward update, reset, and hidden gates
-  
+
   `RB[zrh]` - R recurrence weight matrix for backward update, reset, and hidden gates
-  
+
   `WBb[zrh]` - W bias vectors for backward update, reset, and hidden gates
-  
+
   `RBb[zrh]` - R bias vectors for backward update, reset, and hidden gates
-  
+
   `H` - Hidden state
-  
+
   `num_directions` - 2 if direction == bidirectional else 1
-  
+
   Activation functions:
-  
+
     relu(x)                - max(0, x)
-  
+
     tanh(x)                - (1 - e^{-2x})/(1 + e^{-2x})
-  
+
     sigmoid(x)             - 1/(1 + e^{-x})
-  
+
     (NOTE: Below are optional)
-  
+
     linear(x)              - alpha*x + beta
-  
+
     leakyRelu(x)           - x if x >= 0 else alpha * x
-  
+
     thresholdedRelu(x)     - x if x >= alpha else 0
-  
+
     pRelu(xi)              - xi if xi >= 0 else alpha[i]* xi over dim 0
-  
+
     scaledTanh(x)          - alpha*tanh(beta*x)
-  
+
     sigmoidHard(x)         - min(max(alpha*x + beta, 0), 1)
-  
+
     elu(x)                 - x if x >= 0 else alpha*(e^x - 1)
-  
+
     softsign(x)            - x/(1 + |x|)
-  
+
     softplus(x)            - log(1 + e^x)
-  
+
     parametricSoftplus(xi) - alpha[i]*log(1 + e^{beta[i]* xi}) over dim 0
-  
+
   Equations (Default: f=sigmoid, g=tanh):
-  
+
     - zt = f(Xt*(Wz^T) + Ht-1*Rz + Wbz + Rbz)
-  
+
     - rt = f(Xt*(Wr^T) + Ht-1*Rr + Wbr + Rbr)
-  
+
     - ht = g(Xt*(Wh^T) + rt*(Ht-1*Rh + Rbh) + Wbh)
-  
+
     - Ht = (1 - zt) (.) ht + it (.) Ht-1
 
 #### Attributes
 
 <dl>
 <dt><tt>activation_alpha</tt> : list of floats</dt>
-<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example (f, g, h) in LSTM.</dd>
+<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions. For example, (f, g, h) in LSTM.</dd>
 <dt><tt>activation_beta</tt> : list of floats</dt>
-<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example (f, g, h) in LSTM.</dd>
+<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions. For example, (f, g, h) in LSTM.</dd>
 <dt><tt>activations</tt> : list of strings</dt>
 <dd>A list of 2 (or 4 if bidirectional) activation functions for update, reset, and hidden gates. The activation functions must be one of the activation functions specified above. Optional: See the equations for default if not specified.</dd>
 <dt><tt>clip</tt> : float</dt>
-<dd>Cell clip threshold. Clipping bounds the elements of a tensor in the range of [-threshold, +threshold] and is applied to the input of activations. No clip if not specified.</dd>
+<dd>Cell clip threshold. Clipping bounds the elements of a tensor in the range of [-threshold, +threshold] and is applied to the input of activations. If this isn't specified, no clip is applied.</dd>
 <dt><tt>direction</tt> : string</dt>
-<dd>Specify if the RNN is forward, reverse, or bidirectional. Must be one of forward (default), reverse, or bidirectional.</dd>
+<dd>Specifies whether the RNN is forward (default), reverse, or bidirectional. Must be either forward, reverse, or bidirectional.</dd>
 <dt><tt>hidden_size</tt> : int</dt>
-<dd>Number of neurons in the hidden layer</dd>
+<dd>The number of neurons in the hidden layer.</dd>
 <dt><tt>output_sequence</tt> : int</dt>
-<dd>The sequence output for the hidden is optional if 0. Default 0.</dd>
+<dd>The sequence output for the hidden is optional if 0. The default value is 0.</dd>
 </dl>
 
 #### Inputs (3 - 6)
@@ -1180,36 +1172,36 @@ expect(node, inputs=[], outputs=[values],
 <dt><tt>bias</tt> (optional) : T</dt>
 <dd>The bias tensor for the gates. Concatenation of `[Wb[zrh], Rb[zrh]]` and `[WBb[zrh], RBb[zrh]]` (if bidirectional) along dimension 0. This tensor has shape `[num_directions, 6*hidden_size]`. Optional: If not specified - assumed to be 0</dd>
 <dt><tt>sequence_lens</tt> (optional) : T1</dt>
-<dd>Optional tensor specifying lengths of the sequences in a batch. If not specified - assumed all sequences in the batch to have length `seq_length`. It has shape `[batch_size]`.</dd>
+<dd>An optional tensor specifying lengths of the sequences in a batch. If this isn't specified, it's assumed all sequences in the batch have length `seq_length`. It has the shape `[batch_size]`.</dd>
 <dt><tt>initial_h</tt> (optional) : T</dt>
-<dd>Optional initial value of the hidden. If not specified - assumed to be 0. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>Optional initial value of the hidden. If this isn't specified, it's assumed to be 0. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
 </dl>
 
 #### Outputs (1 - 2)
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>A tensor that concats all the intermediate output values of the hidden. It has shape `[seq_length, num_directions, batch_size, hidden_size]`. It is optional if `output_sequence` is 0.</dd>
+<dd>A tensor that concatenates all the intermediate output values of the hidden. It has the shape `[seq_length, num_directions, batch_size, hidden_size]`. This is optional if `output_sequence` is 0.</dd>
 <dt><tt>Y_h</tt> : T</dt>
-<dd>The last output value of the hidden. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>The last output value of the hidden. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 <dt><tt>T1</tt> : tensor(int32)</dt>
-<dd>Constrain seq_lens to integer tensor.</dd>
+<dd>Constrain seq_lens to an integer tensor.</dd>
 </dl>
 
 
 ### <a name="Gather"></a><a name="gather">**Gather**</a>
 
-  Given `data` tensor of rank r >= 1, and `indices` tensor of rank q, gather
-  entries of the outer-most dimension of `data` indexed by `indices`, and concatenate
+  Given `data` tensor of rank r >= 1, and `indices` tensor of rank q, this gathers
+  entries of the outer-most dimension of `data` indexed by `indices`, and concatenates
   them in an output tensor of rank q + (r - 1).
-  
+
   Example:
     data  = [
         [1.0, 1.2],
@@ -1251,7 +1243,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1259,100 +1251,99 @@ expect(node, inputs=[], outputs=[values],
 
   General Matrix multiplication:
   https://en.wikipedia.org/wiki/Basic_Linear_Algebra_Subprograms#Level_3
-  Compute Y = alpha * A * B + beta * C, where input tensor A has dimension (M X K)
+  Computes Y = alpha * A * B + beta * C, where input tensor A has dimension (M X K)
   , input tensor B has dimension (K X N), input tensor C and output tensor Y have
   dimension (M X N). Input tensor C can be used inplace as the output tensor Y.
-  If attribute broadcast is non-zero, input tensor C will be broadcasted to match
-  the dimension requirement. If A can be transposed before doing the computation
-  if attribute transA is non-zero, same for B and transB.
+  If attribute broadcast is non-zero, then input tensor C will be broadcasted to match
+  the dimension requirement. If A is non-zero and can be transposed before doing the computation, then this also applies for B and transB.
 
 #### Attributes
 
 <dl>
 <dt><tt>alpha</tt> : float</dt>
-<dd>Scalar multiplier for the product of input tensors A * B</dd>
+<dd>The scalar multiplier for the product of input tensors A * B.</dd>
 <dt><tt>beta</tt> : float</dt>
-<dd>Scalar multiplier for input tensor C</dd>
+<dd>The scalar multiplier for input tensor C.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Whether C should be broadcasted</dd>
+<dd>Indicates whether C should be broadcasted.</dd>
 <dt><tt>transA</tt> : int</dt>
-<dd>Whether A should be transposed</dd>
-<dt><tt>transB</tt> : int</dt>
-<dd>Whether B should be transposed</dd>
+<dd>Indicates whether A should be transposed.</dd>
+<dt><tt>transB</tt> S: int</dt>
+<dd>Indicates whether B should be transposed.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>Input tensor A</dd>
+<dd>Input tensor A.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Input tensor B</dd>
+<dd>Input tensor B.</dd>
 <dt><tt>C</tt> : T</dt>
-<dd>Input tensor C, can be inplace.</dd>
+<dd>Input tensor C (can be inplace).</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor.</dd>
+<dd>The output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="GlobalAveragePool"></a><a name="globalaveragepool">**GlobalAveragePool**</a>
 
-  GlobalAveragePool consumes an input tensor X and applies average pooling across the
-   the values in the same channel. This is equivalent to AveragePool with kernel size
-   equal to the spatial dimension of input tensor.
+  GlobalAveragePool consumes an input tensor X, and applies average pooling across the
+   the values in the same channel. This is equivalent to AveragePool with the kernel size
+   equal to the spatial dimension of the input tensor.
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator; dimensions for image case are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non image case, the dimension are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>Input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output data tensor from pooling across the input tensor. Dimensions will be N x C x 1 x 1</dd>
+<dd>An output data tensor from pooling across the input tensor. Dimensions will be N x C x 1 x 1.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="GlobalLpPool"></a><a name="globallppool">**GlobalLpPool**</a>
 
-  GlobalLpPool consumes an input tensor X and applies lp pool pooling across the
-   the values in the same channel. This is equivalent to LpPool with kernel size
+  GlobalLpPool consumes an input tensor X, and applies lp pool pooling across the
+   the values in the same channel. This is equivalent to LpPool with the kernel size
    equal to the spatial dimension of input tensor.
 
 #### Attributes
 
 <dl>
 <dt><tt>p</tt> : float</dt>
-<dd>p value of the Lp norm used to pool over the input data, default is 2.0.</dd>
+<dd>p value of the Lp norm used to pool over the input data (default is 2.0).</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator; dimensions for image case are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non image case, the dimension are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>Input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
@@ -1366,7 +1357,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1380,21 +1371,21 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator; dimensions for image case are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non image case, the dimension are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>Input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output data tensor from pooling across the input tensor. Dimensions will be N x C x 1 x 1</dd>
+<dd>Output data tensor from pooling across the input tensor. Dimensions will be N x C x 1 x 1.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1402,34 +1393,34 @@ expect(node, inputs=[], outputs=[values],
 
   Returns the tensor resulted from performing the `greater` logical operation
   elementwise on the input tensors `A` and `B`.
-  
+
   If broadcasting is enabled, the right-hand-side argument will be broadcasted
-  to match the shape of left-hand-side argument. See the doc of `Add` for a
+  to match the shape of left-hand-side argument. See the documentation on `Add` for a
   detailed description of the broadcasting rules.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>If set, defines the broadcast dimensions.</dd>
+<dd>If set, this defines the broadcast dimensions.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Enable broadcasting</dd>
+<dd>Enables broadcasting.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>Left input tensor for the logical operator.</dd>
+<dd>The left input tensor for the logical operator.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Right input tensor for the logical operator.</dd>
+<dd>The right input tensor for the logical operator.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>C</tt> : T1</dt>
-<dd>Result tensor.</dd>
+<dd>The result tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -1452,30 +1443,30 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>alpha</tt> : float</dt>
-<dd>Value of alpha</dd>
+<dd>The value of alpha.</dd>
 <dt><tt>beta</tt> : float</dt>
-<dd>Value of beta</dd>
+<dd>The value of beta.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>The input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>The output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1485,13 +1476,13 @@ expect(node, inputs=[], outputs=[values],
    of the given input. The input is a 2-D tensor (Tensor<float>) of size
   (batch_size x input_feature_dimensions). The output tensor has the same shape
   and contains the hardmax normalized values of the corresponding input.
-  
-  X does not need to explicitly be a 2D vector; rather, it will be
-  coerced into one. For an arbitrary n-dimensional tensor
+
+  X does not need to explicitly be a 2-D vector; it will be
+  made into one. For an arbitrary n-dimensional tensor
   X \in [a_0, a_1, ..., a_{k-1}, a_k, ..., a_{n-1}] and k is
-  the axis provided, then X will be coerced into a 2-dimensional tensor with
+  the axis provided, then X will be made into a 2-dimensional tensor with
   dimensions [a_0 * ... * a_{k-1}, a_k * ... * a_{n-1}]. For the default
-  case where axis=1, this means the X tensor will be coerced into a 2D tensor
+  case where axis=1, the X tensor will be made into a 2D tensor
   of dimensions [a_0, a_1 * ... * a_{n-1}], where a_0 is often the batch size.
   In this situation, we must have a_0 = N and a_1 * ... * a_{n-1} = D.
   Each of these dimensions must be matched correctly, or else the operator
@@ -1501,39 +1492,39 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>(int) default to 1; describes the axis of the inputs when coerced to 2D; defaults to one because the 0th axis most likely describes the batch_size</dd>
+<dd>(int) (Defaults to 1) Describes the axis of the inputs when made into 2D. This defaults to 1 because the 0th axis most likely describes the batch_size.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The input tensor that's coerced into a 2D matrix of size (NxD) as described above.</dd>
+<dd>The input tensor that is made into a 2D matrix of size (NxD), as described above.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The softmax normalized output values with the same shape as input tensor.</dd>
+<dd>The softmax normalized output values with the same shape as the input tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="InstanceNormalization"></a><a name="instancenormalization">**InstanceNormalization**</a>
 
   Carries out instance normalization as described in the paper
-  https://arxiv.org/abs/1607.08022. 
-  
-  y = scale * (x - mean) / sqrt(variance + epsilon) + bias, 
-  where mean and bias are computed per instance per channel. 
-  
+  https://arxiv.org/abs/1607.08022
+
+  y = scale * (x - mean) / sqrt(variance + epsilon) + bias,
+  where mean and bias are computed per instance per channel.
+
 
 #### Attributes
 
@@ -1564,7 +1555,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1578,180 +1569,180 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>alpha</tt> : float (required)</dt>
-<dd>Scaling parameter</dd>
+<dd>The scaling parameter.</dd>
 <dt><tt>beta</tt> : float (required)</dt>
-<dd>The exponent</dd>
+<dd>The exponent.</dd>
 <dt><tt>bias</tt> : float</dt>
-<dd>Default to 1</dd>
+<dd>Defaults to 1.</dd>
 <dt><tt>size</tt> : int (required)</dt>
-<dd>The number of channels to sum over</dd>
+<dd>The number of channels to sum over.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>The input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>The output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output  types to float tensors.</dd>
+<dd>Constrains input and output  types to float tensors.</dd>
 </dl>
 
 
 ### <a name="LSTM"></a><a name="lstm">**LSTM**</a>
 
-  Computes an one-layer LSTM. This operator is usually supported via some
-  custom implementation such as CuDNN.
-  
+  Computes a one-layer Long Short-Term Memory (LSTM). This operator is usually supported via some
+  custom implementation, such as CuDNN.
+
   Notations:
-  
+
   `X` - input tensor
-  
+
   `i` - input gate
-  
+
   `o` - output gate
-  
+
   `f` - forget gate
-  
+
   `c` - cell gate
-  
+
   `t` - time step (t-1 means previous time step)
-  
+
   `W[iofc]` - W parameter weight matrix for input, output, forget, and cell gates
-  
+
   `R[iofc]` - R recurrence weight matrix for input, output, forget, and cell gates
-  
+
   `Wb[iofc]` - W bias vectors for input, output, forget, and cell gates
-  
+
   `Rb[iofc]` - R bias vectors for input, output, forget, and cell gates
-  
+
   `P[iof]`  - P peephole weight vector for input, output, and forget gates
-  
+
   `WB[iofc]` - W parameter weight matrix for backward input, output, forget, and cell gates
-  
+
   `RB[iofc]` - R recurrence weight matrix for backward input, output, forget, and cell gates
-  
+
   `WBb[iofc]` - W bias vectors for backward input, output, forget, and cell gates
-  
+
   `RBb[iofc]` - R bias vectors for backward input, output, forget, and cell gates
-  
+
   `PB[iof]`  - P peephole weight vector for backward input, output, and forget gates
-  
+
   `H` - Hidden state
-  
+
   `num_directions` - 2 if direction == bidirectional else 1
-  
+
   Activation functions:
-  
+
     relu(x)                - max(0, x)
-  
+
     tanh(x)                - (1 - e^{-2x})/(1 + e^{-2x})
-  
+
     sigmoid(x)             - 1/(1 + e^{-x})
-  
+
     (NOTE: Below are optional)
-  
+
     linear(x)              - alpha*x + beta
-  
+
     leakyRelu(x)           - x if x >= 0 else alpha * x
-  
+
     thresholdedRelu(x)     - x if x >= alpha else 0
-  
+
     pRelu(xi)              - xi if xi >= 0 else alpha[i]* xi over dim 0
-  
+
     scaledTanh(x)          - alpha*tanh(beta*x)
-  
+
     sigmoidHard(x)         - min(max(alpha*x + beta, 0), 1)
-  
+
     elu(x)                 - x if x >= 0 else alpha*(e^x - 1)
-  
+
     softsign(x)            - x/(1 + |x|)
-  
+
     softplus(x)            - log(1 + e^x)
-  
+
     parametricSoftplus(xi) - alpha[i]*log(1 + e^{beta[i]* xi}) over dim 0
-  
+
   Equations (Default: f=sigmoid, g=tanh, h=tanh):
-  
+
     - it = f(Xt*(Wi^T) + Ht-1*Ri + Pi (.) Ct-1 + Wbi + Rbi)
-  
+
     - ft = f(Xt*(Wf^T) + Ht-1*Rf + Pf (.) Ct-1 + Wbf + Rbf)
-  
+
     - ct = g(Xt*(Wc^T) + Ht-1*Rc + Wbc + Rbc)
-  
+
     - Ct = ft (.) Ct-1 + it (.) ct
-  
+
     - ot = f(Xt*(Wo^T) + Ht-1*Ro + Po (.) Ct + Wbo + Rbo)
-  
+
     - Ht = ot (.) h(Ct)
 
 #### Attributes
 
 <dl>
 <dt><tt>activation_alpha</tt> : list of floats</dt>
-<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example (f, g, h) in LSTM.</dd>
+<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example, (f, g, h) in LSTM.</dd>
 <dt><tt>activation_beta</tt> : list of floats</dt>
-<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example (f, g, h) in LSTM.</dd>
+<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example, (f, g, h) in LSTM.</dd>
 <dt><tt>activations</tt> : list of strings</dt>
 <dd>A list of 3 (or 6 if bidirectional) activation functions for input, output, forget, cell, and hidden. The activation functions must be one of the activation functions specified above. Optional: See the equations for default if not specified.</dd>
 <dt><tt>clip</tt> : float</dt>
-<dd>Cell clip threshold. Clipping bounds the elements of a tensor in the range of [-threshold, +threshold] and is applied to the input of activations. No clip if not specified.</dd>
+<dd>Cell clip threshold. Clipping bounds the elements of a tensor in the range of [-threshold, +threshold] and is applied to the input of activations. If this isn't specified, no clip is applied.</dd>
 <dt><tt>direction</tt> : string</dt>
-<dd>Specify if the RNN is forward, reverse, or bidirectional. Must be one of forward (default), reverse, or bidirectional.</dd>
+<dd>Specifies whether the RNN is forward (default), reverse, or bidirectional. Must be one of forward, reverse, or bidirectional.</dd>
 <dt><tt>hidden_size</tt> : int</dt>
-<dd>Number of neurons in the hidden layer</dd>
+<dd>Number of neurons in the hidden layer.</dd>
 <dt><tt>input_forget</tt> : int</dt>
-<dd>Couple the input and forget gates if 1, default 0.</dd>
+<dd>Couple the input and forget gates if 1. Defaults to 0.</dd>
 <dt><tt>output_sequence</tt> : int</dt>
-<dd>The sequence output for the hidden is optional if 0. Default 0.</dd>
+<dd>The sequence output for the hidden is optional if 0. Defaults to 0.</dd>
 </dl>
 
 #### Inputs (3 - 8)
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input sequences packed (and potentially padded) into one 3-D tensor with the shape of `[seq_length, batch_size, input_size]`.</dd>
+<dd>The input sequences packed (and potentially padded) into a single 3-D tensor with the shape `[seq_length, batch_size, input_size]`.</dd>
 <dt><tt>W</tt> : T</dt>
-<dd>The weight tensor for the gates. Concatenation of `W[iofc]` and `WB[iofc]` (if bidirectional) along dimension 0. The tensor has shape `[num_directions, 4*hidden_size, input_size]`.</dd>
+<dd>The weight tensor for the gates. Concatenation of `W[iofc]` and `WB[iofc]` (if bidirectional) along dimension 0. The tensor has the shape `[num_directions, 4*hidden_size, input_size]`.</dd>
 <dt><tt>R</tt> : T</dt>
-<dd>The recurrence weight tensor. Concatenation of `R[iofc]` and `RB[iofc]` (if bidirectional) along dimension 0. This tensor has shape `[num_directions, 4*hidden_size, hidden_size]`.</dd>
+<dd>The recurrence weight tensor. Concatenation of `R[iofc]` and `RB[iofc]` (if bidirectional) along dimension 0. This tensor has the shape `[num_directions, 4*hidden_size, hidden_size]`.</dd>
 <dt><tt>bias</tt> (optional) : T</dt>
-<dd>The bias tensor for input gate. Concatenation of `[Wb[iofc], Rb[iofc]]`, and `[WBb[iofc], RBb[iofc]]` (if bidirectional) along dimension 0. This tensor has shape `[num_directions, 8*hidden_size]`. Optional: If not specified - assumed to be 0.</dd>
+<dd>The bias tensor for the input gate. Concatenation of `[Wb[iofc], Rb[iofc]]` and `[WBb[iofc], RBb[iofc]]` (if bidirectional) along dimension 0. This tensor has the shape `[num_directions, 8*hidden_size]`. Optional: If this isn't specified, it's assumed to be 0.</dd>
 <dt><tt>sequence_lens</tt> (optional) : T1</dt>
-<dd>Optional tensor specifying lengths of the sequences in a batch. If not specified - assumed all sequences in the batch to have length `seq_length`. It has shape `[batch_size]`.</dd>
+<dd>Optional tensor specifying lengths of the sequences in a batch. If this isn't specified, it's assumed all sequences in the batch have length `seq_length`. It has the shape `[batch_size]`.</dd>
 <dt><tt>initial_h</tt> (optional) : T</dt>
-<dd>Optional initial value of the hidden. If not specified - assumed to be 0. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>Optional initial value of the hidden. If this isn't specified it's assumed to be 0. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
 <dt><tt>initial_c</tt> (optional) : T</dt>
-<dd>Optional initial value of the cell. If not specified - assumed to be 0. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>Optional initial value of the cell. If this isn't specified it's assumed to be 0. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
 <dt><tt>P</tt> (optional) : T</dt>
-<dd>The weight tensor for peepholes. Concatenation of `P[iof]` and `PB[iof]` (if bidirectional) along dimension 0. It has shape `[num_directions, 3*hidde_size]`. Optional: If not specified - assumed to be 0.</dd>
+<dd>The weight tensor for peepholes. It is the concatenation of `P[iof]` and `PB[iof]` (if bidirectional) along dimension 0. It has the shape `[num_directions, 3*hidde_size]`. Optional: If this isn't specified, it's assumed to be 0.</dd>
 </dl>
 
 #### Outputs (1 - 2)
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>A tensor that concats all the intermediate output values of the hidden. It has shape `[seq_length, num_directions, batch_size, hidden_size]`. It is optional if `output_sequence` is 0.</dd>
+<dd>A tensor that concatenates all of the intermediate output values of the hidden. It has the shape `[seq_length, num_directions, batch_size, hidden_size]`. It is optional if `output_sequence` is 0.</dd>
 <dt><tt>Y_h</tt> : T</dt>
-<dd>The last output value of the hidden. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>The last output value of the hidden. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 <dt><tt>T1</tt> : tensor(int32)</dt>
 <dd>Constrain seq_lens to integer tensor.</dd>
 </dl>
@@ -1760,35 +1751,35 @@ expect(node, inputs=[], outputs=[values],
 ### <a name="LeakyRelu"></a><a name="leakyrelu">**LeakyRelu**</a>
 
   LeakyRelu takes input data (Tensor<T>) and an argument alpha, and produces one
-  output data (Tensor<T>) where the function `f(x) = alpha * x for x < 0`,
+  output data (Tensor<T>) where the function `f(x) = alpha * x for x < 0` and 
   `f(x) = x for x >= 0`, is applied to the data tensor elementwise.
 
 #### Attributes
 
 <dl>
 <dt><tt>alpha</tt> : float</dt>
-<dd>Coefficient of leakage</dd>
+<dd>Coefficient of leakage.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1796,9 +1787,9 @@ expect(node, inputs=[], outputs=[values],
 
   Returns the tensor resulted from performing the `less` logical operation
   elementwise on the input tensors `A` and `B`.
-  
+
   If broadcasting is enabled, the right-hand-side argument will be broadcasted
-  to match the shape of left-hand-side argument. See the doc of `Add` for a
+  to match the shape of the left-hand-side argument. See the documentation on `Add` for a
   detailed description of the broadcasting rules.
 
 #### Attributes
@@ -1807,7 +1798,7 @@ expect(node, inputs=[], outputs=[values],
 <dt><tt>axis</tt> : int</dt>
 <dd>If set, defines the broadcast dimensions.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Enable broadcasting</dd>
+<dd>Enables broadcasting.</dd>
 </dl>
 
 #### Inputs
@@ -1823,7 +1814,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>C</tt> : T1</dt>
-<dd>Result tensor.</dd>
+<dd>The result tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -1846,21 +1837,21 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The natural log of the input tensor computed element-wise</dd>
+<dd>The natural log of the input tensor, computed element-wise.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1870,13 +1861,13 @@ expect(node, inputs=[], outputs=[values],
    of the given input. The input is a 2-D tensor (Tensor<float>) of size
   (batch_size x input_feature_dimensions). The output tensor has the same shape
   and contains the logsoftmax normalized values of the corresponding input.
-  
-  X does not need to explicitly be a 2D vector; rather, it will be
-  coerced into one. For an arbitrary n-dimensional tensor
-  X \in [a_0, a_1, ..., a_{k-1}, a_k, ..., a_{n-1}] and k is
-  the axis provided, then X will be coerced into a 2-dimensional tensor with
+
+  X does not need to explicitly be a 2D vector – rather, it will be
+  made into one. For an arbitrary n-dimensional tensor
+  X \in [a_0, a_1, ..., a_{k-1}, a_k, ..., a_{n-1}] where k is
+  the axis provided, then X will be made into a 2-dimensional tensor with
   dimensions [a_0 * ... * a_{k-1}, a_k * ... * a_{n-1}]. For the default
-  case where axis=1, this means the X tensor will be coerced into a 2D tensor
+  case where axis=1, the X tensor will be made into a 2D tensor
   of dimensions [a_0, a_1 * ... * a_{n-1}], where a_0 is often the batch size.
   In this situation, we must have a_0 = N and a_1 * ... * a_{n-1} = D.
   Each of these dimensions must be matched correctly, or else the operator
@@ -1886,63 +1877,63 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>(int) default to 1; describes the axis of the inputs when coerced to 2D; defaults to one because the 0th axis most likely describes the batch_size</dd>
+<dd>(int, defaults to 1) This describes the axis of the inputs when made 2D. It defaults to 1 because the 0th axis most likely describes the batch_size</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The input tensor that's coerced into a 2D matrix of size (NxD) as described above.</dd>
+<dd>The input tensor that's made into a 2D matrix of size (NxD), as described above.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The softmax normalized output values with the same shape as input tensor.</dd>
+<dd>The softmax normalized output values with the same shape as the input tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="LpNormalization"></a><a name="lpnormalization">**LpNormalization**</a>
 
-  Given a matrix, apply Lp-normalization along the provided axis.
+  Given a matrix, this operator applies Lp-normalization along the provided axis.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>(int64, default -1) the axis on which to apply normalization, -1 mean last axis.</dd>
+<dd>(int64, defaults to -1) The axis on which to apply normalization. -1 indicates the last axis.</dd>
 <dt><tt>p</tt> : int</dt>
-<dd>(int64, default 2) the order of the normalization, only 1 or 2 are supported.</dd>
+<dd>(int64, defaults to 2) The order of the normalization. Only values of 1 or 2 are supported.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input matrix</dd>
+<dd>The input matrix.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Matrix after normalization</dd>
+<dd>The matrix after normalization.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -1950,21 +1941,21 @@ expect(node, inputs=[], outputs=[values],
 
   LpPool consumes an input tensor X and applies Lp pooling across the
    the tensor according to kernel sizes, stride sizes, and pad lengths.
-   Lp pooling consisting of computing the Lp norm on all values of a subset 
-   of the input tensor according to the kernel size and downsampling the
+   Lp pooling consists of computing the Lp norm on all values of a subset
+   of the input tensor (according to the kernel size), and downsamples the
    data into the output tensor Y for further processing.
 
 #### Attributes
 
 <dl>
 <dt><tt>auto_pad</tt> : string</dt>
-<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID. Where SAME_UPPER or SAME_LOWER mean pad the input so that the ouput size match the input.In case of odd number add the extra padding at the end for SAME_UPPER and at the begining for SAME_LOWER. VALID mean no padding, therefore, read the pixel values from the pads attribute. DEPRECATION NOTE: auto_pad is only intended to support legacy uses, and for framework authors, one is explicitly encouraged to use explicit padding specified in the pads attribute.</dd>
+<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID, where SAME_UPPER or SAME_LOWER indicates padding the input so that the ouput size matches the input. If an odd number, extra padding is added at the end for SAME_UPPER, and at the begining for SAME_LOWER. VALID indicates no padding and, therefore, reads the pixel values from the pads attribute. DEPRECATION NOTE: auto_pad is only intended to support legacy uses. For framework authors, it's encouraged to use explicit padding specified in the pads attribute.</dd>
 <dt><tt>kernel_shape</tt> : list of ints</dt>
 <dd>The size of the kernel along each axis.</dd>
 <dt><tt>p</tt> : float</dt>
-<dd>p value of the Lp norm used to pool over the input data, default is 2.0.</dd>
+<dd>p value of the Lp norm used to pool over the input data. The default value is 2.0.</dd>
+<dd>The padding for lower and upper side along each axis, it can take any value greater than or equal to 0. The value represents the number of pixels added to the lower and upper parts of the corresponding axis. So, `pads` will have two values per axis – the first value corresponding to the number of pixels added to the begining of the axis, and the second value corresponding to the number of pixels add at the end of the axis.</dd>
 <dt><tt>pads</tt> : list of ints</dt>
-<dd>Padding for lower and upper side along each axis, it can take any value greater than or equal to 0. The value represent the number of pixels added to the lower and upper part of the corresponding axis. So `pads` will have two values per axis, first value corresponding to the number of pixels added to the begining of the axis and the second value corresponding to the number of pixels add at the end of the axis.</dd>
 <dt><tt>strides</tt> : list of ints</dt>
 <dd>Stride along each axis.</dd>
 </dl>
@@ -1973,7 +1964,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator; dimensions for image case are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non image case, the dimension are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>The input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimension are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
@@ -1987,35 +1978,35 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="MatMul"></a><a name="matmul">**MatMul**</a>
 
-  Matrix product that behaves like numpy.matmul: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.matmul.html
+  A matrix product that behaves like numpy.matmul: https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.matmul.html
 
 #### Inputs
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>N-dimensional matrix A</dd>
+<dd>An N-dimensional matrix A.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>N-dimensional matrix B</dd>
+<dd>An N-dimensional matrix B.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Matrix multiply results from A * B</dd>
+<dd>Matrix multiplication results from A * B.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -2058,7 +2049,7 @@ expect(node, inputs=[a, b], outputs=[c],
 
 ### <a name="Max"></a><a name="max">**Max**</a>
 
-  Element-wise max of each of the input tensors. The first input tensor can be
+  Element-wise maximum of each of the input tensors. The first input tensor can be
   used in-place as the output tensor, in which case the max will be done in
   place and results will be accumulated in input0. All inputs and outputs must
   have the same shape and data type.
@@ -2067,41 +2058,41 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>data_0</tt> : T</dt>
-<dd>First of the input tensors. Can be inplace.</dd>
+<dd>The first of the input tensors. This can be inplace.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>max</tt> : T</dt>
-<dd>Output tensor. Same dimension as inputs.</dd>
+<dd>The output tensor. This has the same dimension as inputs.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="MaxPool"></a><a name="maxpool">**MaxPool**</a>
 
-  MaxPool consumes an input tensor X and applies max pooling across the
+  MaxPool consumes an input tensor X, and applies maximum pooling across the
    the tensor according to kernel sizes, stride sizes, and pad lengths.
-   max pooling consisting of computing the max on all values of a 
-   subset of the input tensor according to the kernel size and downsampling the
+   Maximum pooling consists of computing the maximum on all values of a
+   subset of the input tensor (according to the kernel size) and downsamples the
    data into the output tensor Y for further processing.
 
 #### Attributes
 
 <dl>
 <dt><tt>auto_pad</tt> : string</dt>
-<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID. Where SAME_UPPER or SAME_LOWER mean pad the input so that the ouput size match the input.In case of odd number add the extra padding at the end for SAME_UPPER and at the begining for SAME_LOWER. VALID mean no padding. DEPRECATION NOTE: auto_pad is only intended to support legacy uses, and for framework authors, one is explicitly encouraged to use explicit padding specified in the pads attribute.</dd>
+<dd>auto_pad must be either SAME_UPPER, SAME_LOWER or VALID, where SAME_UPPER or SAME_LOWER indicates padding the input so that the ouput size matches the input. If an odd number, extra padding is added at the end for SAME_UPPER, and at the begining for SAME_LOWER. VALID indicates no padding. DEPRECATION NOTE: auto_pad is only intended to support legacy uses. For framework authors, it's encouraged to use explicit padding specified in the pads attribute.</dd>
 <dt><tt>kernel_shape</tt> : list of ints</dt>
 <dd>The size of the kernel along each axis.</dd>
 <dt><tt>pads</tt> : list of ints</dt>
-<dd>Padding for lower and upper side along each axis, it can take any value greater than or equal to 0. The value represent the number of pixels added to the lower and upper part of the corresponding axis. So `pads` will have two values per axis, first value corresponding to the number of pixels added to the begining of the axis and the second value corresponding to the number of pixels add at the end of the axis. This attribute cannot be used simultaneously with auto_pad attribute.</dd>
+<dd>Padding for lower and upper side along each axis, it can take any value greater than or equal to 0. The value represents the number of pixels added to the lower and upper part of the corresponding axis. So, `pads` will have two values per axis – the first value corresponding to the number of pixels added to the begining of the axis, and the second value corresponding to the number of pixels add at the end of the axis. This attribute cannot be used simultaneously with the auto_pad attribute.</dd>
 <dt><tt>strides</tt> : list of ints</dt>
 <dd>Stride along each axis.</dd>
 </dl>
@@ -2110,28 +2101,28 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator; dimensions for image case are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non image case, the dimension are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>Input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output data tensor from average or max pooling across the input tensor. Dimensions will vary based on various kernel, stride, and pad sizes.</dd>
+<dd>The output data tensor from average or max pooling across the input tensor. Dimensions will vary based on various kernel, stride, and pad sizes.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="MaxRoiPool"></a><a name="maxroipool">**MaxRoiPool**</a>
 
-  ROI max pool consumes an input tensor X and region of interests (RoIs) to 
-   apply max pooling across each RoI, to produce output 4-D tensor of shape 
+  MaxRoiPool consumes an input tensor X and Regions of Interest (RoIs) to
+   apply max pooling across each RoI, producing a 4-D tensor of shape
    (num_rois, channels, pooled_shape[0], pooled_shape[1]).
 
 #### Attributes
@@ -2147,9 +2138,9 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator; dimensions for image case are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data.</dd>
+<dd>The input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data.</dd>
 <dt><tt>rois</tt> : T</dt>
-<dd>RoIs (Regions of Interest) to pool over. Should be a 2-D tensor of shape (num_rois, 5) given as [[batch_id, x1, y1, x2, y2], ...].</dd>
+<dd>The RoI to pool over. This should be a 2-D tensor of shape (num_rois, 5) given as [[batch_id, x1, y1, x2, y2], ...].</dd>
 </dl>
 
 #### Outputs
@@ -2163,7 +2154,7 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -2178,28 +2169,28 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>data_0</tt> : T</dt>
-<dd>First of the input tensors. Can be inplace.</dd>
+<dd>The first of the input tensors. Can be inplace.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>mean</tt> : T</dt>
-<dd>Output tensor. Same dimension as inputs.</dd>
+<dd>The output tensor. Same dimension as inputs.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Min"></a><a name="min">**Min**</a>
 
-  Element-wise min of each of the input tensors. The first input tensor can be
-  used in-place as the output tensor, in which case the max will be done in
+  Element-wise minimum of each of the input tensors. The first input tensor can be
+  used in-place as the output tensor, in which case the maximum will be done in
   place and results will be accumulated in input0. All inputs and outputs must
   have the same shape and data type.
 
@@ -2221,29 +2212,29 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Mul"></a><a name="mul">**Mul**</a>
 
   Performs element-wise binary multiplication (with limited broadcast support).
-  
-  If necessary the right-hand-side argument will be broadcasted to match the
+
+  If necessary, the right-hand-side argument will be broadcasted to match the
   shape of left-hand-side argument. When broadcasting is specified, the second
-  tensor can either be of size 1 (a scalar value), or having its shape as a
+  tensor can either be of size 1 (a scalar value), or have its shape as a
   contiguous subset of the first tensor's shape. The starting of the mutually
   equal shape is specified by the argument "axis", and if it is not set, suffix
   matching is assumed. 1-dim expansion doesn't work yet.
-  
+
   For example, the following tensor shapes are supported (with broadcast=1):
-  
+
     shape(A) = (2, 3, 4, 5), shape(B) = (,), i.e. B is a scalar
     shape(A) = (2, 3, 4, 5), shape(B) = (5,)
     shape(A) = (2, 3, 4, 5), shape(B) = (4, 5)
     shape(A) = (2, 3, 4, 5), shape(B) = (3, 4), with axis=1
     shape(A) = (2, 3, 4, 5), shape(B) = (2), with axis=0
-  
+
   Attribute `broadcast=1` needs to be passed to enable broadcasting.
 
 #### Attributes
@@ -2252,58 +2243,58 @@ expect(node, inputs=[a, b], outputs=[c],
 <dt><tt>axis</tt> : int</dt>
 <dd>If set, defines the broadcast dimensions. See doc for details.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Pass 1 to enable broadcasting</dd>
+<dd>Pass 1 to enable broadcasting.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>First operand, should share the type with the second operand.</dd>
+<dd>The first operand. It should share the type with the second operand.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Second operand. With broadcasting can be of smaller size than A. If broadcasting is disabled it should be of the same size.</dd>
+<dd>The second operand. With broadcasting enabled, it can be of smaller size than A. If broadcasting is disabled, it should be of the same size.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>C</tt> : T</dt>
-<dd>Result, has same dimensions and type as A</dd>
+<dd>The reuslt with the same dimensions and type as A.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Neg"></a><a name="neg">**Neg**</a>
 
   Neg takes one input data (Tensor<T>) and produces one output data
-  (Tensor<T>) where each element flipped sign, y = -x, is applied to
+  (Tensor<T>) where each element's sign is flipped, y = -x, and applied to
   the tensor elementwise.
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>The input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>The output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -2315,14 +2306,14 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>The input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>The output tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -2337,18 +2328,18 @@ expect(node, inputs=[a, b], outputs=[c],
 
   Returns the tensor resulted from performing the `or` logical operation
   elementwise on the input tensors `A` and `B`.
-  
+
   If broadcasting is enabled, the right-hand-side argument will be broadcasted
-  to match the shape of left-hand-side argument. See the doc of `Add` for a
+  to match the shape of left-hand-side argument. See the documentation on `Add` for a
   detailed description of the broadcasting rules.
 
 #### Attributes
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>If set, defines the broadcast dimensions.</dd>
+<dd>If set, this will define the broadcast dimensions.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Enable broadcasting</dd>
+<dd>Enables broadcasting.</dd>
 </dl>
 
 #### Inputs
@@ -2364,7 +2355,7 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>C</tt> : T1</dt>
-<dd>Result tensor.</dd>
+<dd>The result tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -2381,47 +2372,47 @@ expect(node, inputs=[a, b], outputs=[c],
 
   PRelu takes input data (Tensor<T>) and slope tensor as input, and produces one
   output data (Tensor<T>) where the function `f(x) = slope * x for x < 0`,
-  `f(x) = x for x >= 0`., is applied to the data tensor elementwise.
-  
+  `f(x) = x for x >= 0`, is applied to the data tensor elementwise.
+
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>The input tensor.</dd>
 <dt><tt>slope</tt> : T</dt>
-<dd>Slope tensor. If `Slope` is of size 1, the value is sharedacross different channels</dd>
+<dd>The slope tensor. If `Slope` is of size 1, the value is sharedacross different channels.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>The output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Pad"></a><a name="pad">**Pad**</a>
 
   Given `data` tensor, paddings, mode, and value.
-  
+
   Example:
     Insert 0 paddings to the beginning of the second dimension.
-  
+
     data = [
         [1.0, 1.2],
         [2.3, 3.4],
         [4.5, 5.7],
     ]
     paddings = [0, 0, 2, 0]
-  
+
     output = [
         [
             [0.0, 0.0, 1.0, 1.2],
@@ -2436,30 +2427,30 @@ expect(node, inputs=[a, b], outputs=[c],
 <dt><tt>mode</tt> : string</dt>
 <dd>Three modes: constant(default), reflect, edge</dd>
 <dt><tt>paddings</tt> : list of ints (required)</dt>
-<dd>List of integers indicate the padding sizes, paddings's length should be the double of input's dimension. The order should be axis_0_begin, axis_0_end, axis_1_begin, ..., axis_n_begin, axis_n_end, n is input's dimension.</dd>
+<dd>List of integers indicate the padding sizes. The paddings's length should be the double of input's dimension. The order should be axis_0_begin, axis_0_end, axis_1_begin, ..., axis_n_begin, axis_n_end, n is input's dimension.</dd>
 <dt><tt>value</tt> : float</dt>
-<dd>One float, indicates the value to be filled, default is 0</dd>
+<dd>One float, indicates the value to be filled, default is 0.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>data</tt> : T</dt>
-<dd>Input tensor.</dd>
+<dd>The input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Tensor after padding.</dd>
+<dd>The tensor after padding.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -2520,7 +2511,7 @@ for mode in ['edge', 'reflect']:
 
 ### <a name="Pow"></a><a name="pow">**Pow**</a>
 
-  Pow takes input data (Tensor<T>) and exponent Tensor, and
+  Pow takes input data (Tensor<T>) and exponent tensor, and
   produces one output data (Tensor<T>) where the function `f(x) = x^exponent`,
   is applied to the data tensor elementwise.
 
@@ -2528,110 +2519,110 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor of any shape, base of the exponent.</dd>
+<dd>An input tensor of any shape, base of the exponent.</dd>
 <dt><tt>Y</tt> : T</dt>
-<dd>Input tensor of any shape broadcastable to X shape, the exponent component.</dd>
+<dd>An input tensor of any shape broadcastable to X shape, the exponent component.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Z</tt> : T</dt>
-<dd>Output tensor (same size as X)</dd>
+<dd>An output tensor (same size as X)</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="RNN"></a><a name="rnn">**RNN**</a>
 
-  Computes an one-layer simple RNN. This operator is usually supported
-  via some custom implementation such as CuDNN.
-  
+  Computes a one-layer simple RNN. This operator is usually supported
+  via some custom implementation, such as CuDNN.
+
   Notations:
-  
+
   `X` - input tensor
-  
+
   `i` - input gate
-  
+
   `t` - time step (t-1 means previous time step)
-  
+
   `Wi` - W parameter weight matrix for input gate
-  
+
   `Ri` - R recurrence weight matrix for input gate
-  
+
   `Wbi` - W parameter bias vector for input gate
-  
+
   `Rbi` - R parameter bias vector for input gate
-  
+
   `WBi` - W parameter weight matrix for backward input gate
-  
+
   `RBi` - R recurrence weight matrix for backward input gate
-  
+
   `WBbi` - WR bias vectors for backward input gate
-  
+
   `RBbi` - RR bias vectors for backward input gate
-  
+
   `H` - Hidden state
-  
+
   `num_directions` - 2 if direction == bidirectional else 1
-  
+
   Activation functions:
-  
+
     relu(x)                - max(0, x)
-  
+
     tanh(x)                - (1 - e^{-2x})/(1 + e^{-2x})
-  
+
     sigmoid(x)             - 1/(1 + e^{-x})
-  
+
     (NOTE: Below are optional)
-  
+
     linear(x)              - alpha*x + beta
-  
+
     leakyRelu(x)           - x if x >= 0 else alpha * x
-  
+
     thresholdedRelu(x)     - x if x >= alpha else 0
-  
+
     pRelu(xi)              - xi if xi >= 0 else alpha[i]* xi over dim 0
-  
+
     scaledTanh(x)          - alpha*tanh(beta*x)
-  
+
     sigmoidHard(x)         - min(max(alpha*x + beta, 0), 1)
-  
+
     elu(x)                 - x if x >= 0 else alpha*(e^x - 1)
-  
+
     softsign(x)            - x/(1 + |x|)
-  
+
     softplus(x)            - log(1 + e^x)
-  
+
     parametricSoftplus(xi) - alpha[i]*log(1 + e^{beta[i]* xi}) over dim 0
-  
+
   Equations (Default: f=tanh):
-  
+
     - Ht = f(Xt*(Wi^T) + Ht-1*Ri + Wbi + Rbi)
 
 #### Attributes
 
 <dl>
 <dt><tt>activation_alpha</tt> : list of floats</dt>
-<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example (f, g, h) in LSTM.</dd>
+<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions. For example, (f, g, h) in LSTM.</dd>
 <dt><tt>activation_beta</tt> : list of floats</dt>
-<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions, for example (f, g, h) in LSTM.</dd>
+<dd>Optional scaling values used by some activation functions. The values are consumed in the order of activation functions. For example, (f, g, h) in LSTM.</dd>
 <dt><tt>activations</tt> : list of strings</dt>
-<dd>One (or two if bidirectional) activation function for input gate. The activation function must be one of the activation functions specified above. Optional: Default `tanh` if not specified.</dd>
+<dd>One (or two if bidirectional) activation function for input gate. The activation function must be one of the activation functions specified above. Optional: The default value is `tanh` if not specified.</dd>
 <dt><tt>clip</tt> : float</dt>
-<dd>Cell clip threshold. Clipping bounds the elements of a tensor in the range of [-threshold, +threshold] and is applied to the input of activations. No clip if not specified.</dd>
+<dd>Cell clip threshold. Clipping bounds the elements of a tensor in the range of [-threshold, +threshold] and is applied to the input of activations. Clipping is not applied if this is not specified.</dd>
 <dt><tt>direction</tt> : string</dt>
-<dd>Specify if the RNN is forward, reverse, or bidirectional. Must be one of forward (default), reverse, or bidirectional.</dd>
+<dd>Specifies whether the RNN is forward (default), reverse, or bidirectional. Must be either forward, reverse, or bidirectional.</dd>
 <dt><tt>hidden_size</tt> : int</dt>
-<dd>Number of neurons in the hidden layer</dd>
+<dd>The number of neurons in the hidden layer.</dd>
 <dt><tt>output_sequence</tt> : int</dt>
-<dd>The sequence output for the hidden is optional if 0. Default 0.</dd>
+<dd>The sequence output for the hidden is optional if 0. Defaults to 0.</dd>
 </dl>
 
 #### Inputs (3 - 6)
@@ -2646,16 +2637,16 @@ for mode in ['edge', 'reflect']:
 <dt><tt>bias</tt> (optional) : T</dt>
 <dd>The bias tensor for input gate. Concatenation of `[Wbi, Rbi]` and `[WBbi, RBbi]` (if bidirectional). The tensor has shape `[num_directions, 2*hidden_size]`. Optional: If not specified - assumed to be 0.</dd>
 <dt><tt>sequence_lens</tt> (optional) : T1</dt>
-<dd>Optional tensor specifying lengths of the sequences in a batch. If not specified - assumed all sequences in the batch to have length `seq_length`. It has shape `[batch_size]`.</dd>
+<dd>Optional tensor specifying lengths of the sequences in a batch. If this isn't specified, it's assumed that all sequences in the batch will have length `seq_length`. It has the shape `[batch_size]`.</dd>
 <dt><tt>initial_h</tt> (optional) : T</dt>
-<dd>Optional initial value of the hidden. If not specified - assumed to be 0. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>Optional initial value of the hidden. If this isn't specified, it's assumed to be 0. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
 </dl>
 
 #### Outputs (1 - 2)
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>A tensor that concats all the intermediate output values of the hidden. It has shape `[seq_length, num_directions, batch_size, hidden_size]`. It is optional if `output_sequence` is 0.</dd>
+<dd>A tensor that concatenates all the intermediate output values of the hidden. It has shape `[seq_length, num_directions, batch_size, hidden_size]`. This is optional if `output_sequence` is 0.</dd>
 <dt><tt>Y_h</tt> : T</dt>
 <dd>The last output value of the hidden. It has shape `[num_directions, batch_size, hidden_size]`.</dd>
 </dl>
@@ -2664,18 +2655,18 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 <dt><tt>T1</tt> : tensor(int32)</dt>
-<dd>Constrain seq_lens to integer tensor.</dd>
+<dd>Constrains seq_lens to integer tensor.</dd>
 </dl>
 
 
 ### <a name="RandomNormal"></a><a name="randomnormal">**RandomNormal**</a>
 
-  Generate a tensor with random values drawn from a normal distribution. The shape
-  of the tensor is specified by the `shape` argument and the parameter of the normal distribution
-  specified by `mean` and `scale`.
-  
+  RandomNormal generates a tensor with random values drawn from a normal distribution. The shape
+  of the tensor is specified by the `shape` argument, and the parameter of the normal distribution
+  is specified by `mean` and `scale`.
+
   The data type is specified by the 'dtype' argument. The 'dtype' argument must
   be one of the data types specified in the 'DataType' enum field in the
   TensorProto message.
@@ -2690,7 +2681,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>scale</tt> : float</dt>
 <dd>The standard deviation of the normal distribution.</dd>
 <dt><tt>seed</tt> : float</dt>
-<dd>(Optional) Seed to the random generator, if not specified we will auto generate one.</dd>
+<dd>(Optional) Seed to the random generator. If this isn't specified, one will be automatically generated.</dd>
 <dt><tt>shape</tt> : list of ints</dt>
 <dd>The shape of the output tensor.</dd>
 </dl>
@@ -2702,23 +2693,23 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of random values drawn from normal distribution</dd>
+<dd>An output tensor of random values drawn from normal distribution.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="RandomNormalLike"></a><a name="randomnormallike">**RandomNormalLike**</a>
 
-  Generate a tensor with random values drawn from a normal distribution. The shape
-  of the tensor is computed from the input argument and the parameter of the normal distribution
+  RandomNormalLike generates a tensor with random values drawn from a normal distribution. The shape
+  of the tensor is computed from the input argument, and the parameter of the normal distribution is
   specified by `mean` and `scale`.
-  
+
   The data type is specified by the 'dtype' argument. The 'dtype' argument must
   be one of the data types specified in the 'DataType' enum field in the
   TensorProto message.
@@ -2727,42 +2718,42 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>dtype</tt> : int</dt>
-<dd>(Optional) The data type for the elements of the output tensor, if not specified, we will usethe data type of the input tensor.</dd>
+<dd>(Optional) The data type for the elements of the output tensor. If this isn't specified, the data type of the input tensor will be used.</dd>
 <dt><tt>mean</tt> : float</dt>
 <dd>The mean of the normal distribution.</dd>
 <dt><tt>scale</tt> : float</dt>
 <dd>The standard deviation of the normal distribution.</dd>
 <dt><tt>seed</tt> : float</dt>
-<dd>(Optional) Seed to the random generator, if not specified we will auto generate one.</dd>
+<dd>(Optional) A seed value for the random generator. If this isn't specified, one will be automatically generated.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor to provide shape information.</dd>
+<dd>An input tensor that provides shape information.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of random values drawn from normal distribution</dd>
+<dd>An output tensor of random values drawn from normal distribution.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="RandomUniform"></a><a name="randomuniform">**RandomUniform**</a>
 
-  Generate a tensor with random values drawn from a uniform distribution. The shape
-  of the tensor is specified by the `shape` argument and the range by `low` and `high`.
-  
+  RandomUniform generates a tensor with random values drawn from a uniform distribution. The shape
+  of the tensor is specified by the `shape` argument, and the range through the `low` and `high` arguments.
+
   The data type is specified by the 'dtype' argument. The 'dtype' argument must
   be one of the data types specified in the 'DataType' enum field in the
   TensorProto message.
@@ -2773,11 +2764,11 @@ for mode in ['edge', 'reflect']:
 <dt><tt>dtype</tt> : int</dt>
 <dd>The data type for the elements of the output tensor.</dd>
 <dt><tt>high</tt> : float</dt>
-<dd>Upper boundary of the output values.</dd>
+<dd>The upper boundary of the output values.</dd>
 <dt><tt>low</tt> : float</dt>
-<dd>Lower boundary of the output values.</dd>
+<dd>The lower boundary of the output values.</dd>
 <dt><tt>seed</tt> : float</dt>
-<dd>(Optional) Seed to the random generator, if not specified we will auto generate one.</dd>
+<dd>(Optional) A seed value for the random generator. If this isn't specified, one will be automatically generated.</dd>
 <dt><tt>shape</tt> : list of ints</dt>
 <dd>The shape of the output tensor.</dd>
 </dl>
@@ -2789,22 +2780,22 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of random values drawn from uniform distribution</dd>
+<dd>An output tensor of random values drawn from uniform distribution.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="RandomUniformLike"></a><a name="randomuniformlike">**RandomUniformLike**</a>
 
-  Generate a tensor with random values drawn from a uniform distribution. The shape
-  of the tensor is computed from the input argument and the range by `low` and `high`.
-  
+  RandomUniformLike generates a tensor with random values drawn from a uniform distribution. The shape
+  of the tensor is computed from the input argument, and the range from the `low` and `high` arguments.
+
   The data type is specified by the 'dtype' argument. The 'dtype' argument must
   be one of the data types specified in the 'DataType' enum field in the
   TensorProto message.
@@ -2813,72 +2804,72 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>dtype</tt> : int</dt>
-<dd>(Optional) The data type for the elements of the output tensor, if not specified, we will usethe data type of the input tensor.</dd>
+<dd>(Optional) The data type for the elements of the output tensor. If this isn't specified, the data type of the input tensor will be used.</dd>
 <dt><tt>high</tt> : float</dt>
-<dd>Upper boundary of the output values.</dd>
+<dd>The upper boundary of the output values.</dd>
 <dt><tt>low</tt> : float</dt>
-<dd>Lower boundary of the output values.</dd>
+<dd>The lower boundary of the output values.</dd>
 <dt><tt>seed</tt> : float</dt>
-<dd>(Optional) Seed to the random generator, if not specified we will auto generate one.</dd>
+<dd>(Optional) A seed value for the random generator. If this isn't specified, one will be automatically generated.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor to provide shape information.</dd>
+<dd>An input tensor to provide shape information.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of random values drawn from uniform distribution</dd>
+<dd>An output tensor of random values drawn from uniform distribution</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Reciprocal"></a><a name="reciprocal">**Reciprocal**</a>
 
   Reciprocal takes one input data (Tensor<T>) and produces one output data
-  (Tensor<T>) where the reciprocal is, y = 1/x, is applied to
+  (Tensor<T>), where the reciprocal, y = 1/x, is applied to
   the tensor elementwise.
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceL1"></a><a name="reducel1">**ReduceL1**</a>
 
-  Computes the L1 norm of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
+  ReduceL1 computes the L1 norm of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equals 1. If keepdims equals 0, then
   the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -2887,7 +2878,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -2901,24 +2892,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceL2"></a><a name="reducel2">**ReduceL2**</a>
 
-  Computes the L2 norm of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceL2 computes the L2 norm of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equals 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -2927,7 +2918,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -2941,24 +2932,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceLogSum"></a><a name="reducelogsum">**ReduceLogSum**</a>
 
   Computes the log sum of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
+  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then
   the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -2967,7 +2958,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -2988,17 +2979,17 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceLogSumExp"></a><a name="reducelogsumexp">**ReduceLogSumExp**</a>
 
-  Computes the log sum exponent of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceLogSumExp computes the log sum exponent of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equals 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -3007,7 +2998,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -3021,24 +3012,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceMax"></a><a name="reducemax">**ReduceMax**</a>
 
-  Computes the max of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceMax computes the maximum of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equals 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -3047,7 +3038,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -3061,24 +3052,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceMean"></a><a name="reducemean">**ReduceMean**</a>
 
-  Computes the mean of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceMean computes the mean of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equals 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -3087,7 +3078,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -3101,24 +3092,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceMin"></a><a name="reducemin">**ReduceMin**</a>
 
-  Computes the min of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceMin computes the minimum of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equals 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -3127,7 +3118,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -3141,24 +3132,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceProd"></a><a name="reduceprod">**ReduceProd**</a>
 
-  Computes the product of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceProd computes the product of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equal 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -3167,7 +3158,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -3181,24 +3172,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceSum"></a><a name="reducesum">**ReduceSum**</a>
 
-  Computes the sum of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceSum coputes the sum of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equal 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -3207,7 +3198,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -3221,24 +3212,24 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor.</dd>
+<dd>A reduced output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ReduceSumSquare"></a><a name="reducesumsquare">**ReduceSumSquare**</a>
 
-  Computes the sum square of the input tensor's element along the provided axes. The resulted
-  tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then 
-  the resulted tensor have the reduced dimension pruned.
-  
-  The above behavior is similar to numpy, with the exception that numpy default keepdims to
+  ReduceSumSquare computes the sum square of the input tensor's element along the provided axes. The resulted
+  tensor has the same rank as the input if keepdims equal 1. If keepdims equals 0, then
+  the resulted tensor's reduced dimension will be pruned.
+
+  The above behavior is similar to numpy, with the exception that numpy defaults keepdims to
   False instead of True.
 
 #### Attributes
@@ -3247,7 +3238,7 @@ for mode in ['edge', 'reflect']:
 <dt><tt>axes</tt> : list of ints</dt>
 <dd>A list of integers, along which to reduce.</dd>
 <dt><tt>keepdims</tt> : int</dt>
-<dd>Keep the reduced dimension or not, default 1 mean keep reduced dimension.</dd>
+<dd>Indicates whether to keep the reduced dimension or not. The default value, 1, keeps the reduced dimension.</dd>
 </dl>
 
 #### Inputs
@@ -3268,7 +3259,7 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -3282,21 +3273,21 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -3323,11 +3314,9 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="Reshape"></a><a name="reshape">**Reshape**</a>
 
-  Reshape the input tensor similar to numpy.reshape.
-  
-  It takes a tensor as input and an argument `shape`. It outputs the reshaped tensor.
-  
-  At most one dimension of the new shape can be -1. In this case, the value is
+  Similar to numpy.reshape, Reshape takes a tensor as input and the argument `shape` – output is the reshaped tensor.
+
+  At most, one dimension of the new shape can be -1. In this case, the value is
   inferred from the size of the tensor and the remaining dimensions. A dimension
   could also be 0, in which case the actual dimension value is going to be copied
   from the shape argument.
@@ -3336,7 +3325,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>shape</tt> : list of ints</dt>
-<dd>New shape</dd>
+<dd>A new shape.</dd>
 </dl>
 
 #### Inputs
@@ -3350,14 +3339,14 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>reshaped</tt> : T</dt>
-<dd>Reshaped data.</dd>
+<dd>The reshaped data.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -3372,74 +3361,74 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>alpha</tt> : float</dt>
-<dd>Coefficient of SELU default to 1.6732.</dd>
+<dd>The coefficient of SELU. Defaults to 1.6732.</dd>
 <dt><tt>gamma</tt> : float</dt>
-<dd>Coefficient of SELU default to 1.0507.</dd>
+<dd>The coefficient of SELU. Defaults to 1.0507.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Sigmoid"></a><a name="sigmoid">**Sigmoid**</a>
 
   Sigmoid takes one input data (Tensor<T>) and produces one output data
-  (Tensor<T>) where the sigmoid function, y = 1 / (1 + exp(-x)), is applied to the
+  (Tensor<T>), where the sigmoid function, y = 1 / (1 + exp(-x)), is applied to the
   tensor elementwise.
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Slice"></a><a name="slice">**Slice**</a>
 
-  Produces a slice of the input tensor along multiple axes. Similar to numpy:
+  Slice produces a slice of the input tensor along multiple axes – similar to numpy:
   https://docs.scipy.org/doc/numpy/reference/arrays.indexing.html
-  
+
   Slices uses `axes`, `starts` and `ends` attributes to specify the start and end
-  dimension for each axis in the list of axes, it uses this information to
+  dimension for each axis in the list of axes. It uses this information to
   slice the input `data` tensor. If a negative value is passed for any of the
-  start or end indices, it represent number of elements before the end of that
+  start or end indices, it represents the number of elements before the end of that
   dimension.
-  
+
   Example 1:
-  
+
     data = [
         [1, 2, 3, 4],
         [5, 6, 7, 8],
@@ -3447,56 +3436,56 @@ expect(node, inputs=[x], outputs=[y],
     axes = [0, 1]
     starts = [1, 0]
     ends = [2, 3]
-  
+
     result = [
         [5, 6, 7],
     ]
-  
-  
+
+
   Example 2:
-  
+
     data = [
         [1, 2, 3, 4],
         [5, 6, 7, 8],
     ]
     starts = [0]
     ends = [-1]
-  
+
     result = [
         [1, 2, 3, 4],
     ]
-  
+
 
 #### Attributes
 
 <dl>
 <dt><tt>axes</tt> : list of ints</dt>
-<dd>Axes that `starts` and `ends` apply to. It's optional. If not present, will be treated as [0, 1, ..., len(`starts`) - 1].</dd>
+<dd>The axes that `starts` and `ends` apply to (optional). If these are not specified, they will be treated as [0, 1, ..., len(`starts`) - 1].</dd>
 <dt><tt>ends</tt> : list of ints (required)</dt>
-<dd>Ending indices (exclusive) of corresponding axis in axes`</dd>
+<dd>The ending indices (exclusive) of corresponding axis in `axes`.</dd>
 <dt><tt>starts</tt> : list of ints (required)</dt>
-<dd>Starting indices of corresponding axis in `axes`</dd>
+<dd>The starting indices of corresponding axis in `axes`.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>data</tt> : T</dt>
-<dd>Tensor of data to extract slices from.</dd>
+<dd>A tensor of data to extract slices from.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Sliced data tensor.</dd>
+<dd>A sliced data tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -3572,17 +3561,17 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="Softmax"></a><a name="softmax">**Softmax**</a>
 
-  The operator computes the softmax normalized values for each layer in the batch
+  Softmax computes the softmax normalized values for each layer in the batch
    of the given input. The input is a 2-D tensor (Tensor<float>) of size
   (batch_size x input_feature_dimensions). The output tensor has the same shape
   and contains the softmax normalized values of the corresponding input.
-  
+
   X does not need to explicitly be a 2D vector; rather, it will be
-  coerced into one. For an arbitrary n-dimensional tensor
+  made into one. For an arbitrary n-dimensional tensor
   X \in [a_0, a_1, ..., a_{k-1}, a_k, ..., a_{n-1}] and k is
-  the axis provided, then X will be coerced into a 2-dimensional tensor with
+  the axis provided, then X will be made into a 2-dimensional tensor with
   dimensions [a_0 * ... * a_{k-1}, a_k * ... * a_{n-1}]. For the default
-  case where axis=1, this means the X tensor will be coerced into a 2D tensor
+  case where axis=1, the X tensor will be made into a 2D tensor
   of dimensions [a_0, a_1 * ... * a_{n-1}], where a_0 is often the batch size.
   In this situation, we must have a_0 = N and a_1 * ... * a_{n-1} = D.
   Each of these dimensions must be matched correctly, or else the operator
@@ -3592,28 +3581,28 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>(int) default to 1; describes the axis of the inputs when coerced to 2D; defaults to one because the 0th axis most likely describes the batch_size</dd>
+<dd>(int, default to 1) Describes the axis of the inputs when made into 2D. This defaults to 1 because the 0th axis most likely describes the batch_size.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The input tensor that's coerced into a 2D matrix of size (NxD) as described above.</dd>
+<dd>The input tensor that's made into a 2D matrix of size (NxD), as described above.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The softmax normalized output values with the same shape as input tensor.</dd>
+<dd>The softmax normalized output values with the same shape as the input tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -3627,27 +3616,27 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>1D input tensor</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>1D input tensor</dd>
+<dd>A 1D output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Softsign"></a><a name="softsign">**Softsign**</a>
 
-  Calculates the softsign (x/1+|x|) of the given input tensor element-wise. This
+  Softsign calculates the softsign (x/1+|x|) of the given input tensor element-wise. This
   operation can be done in an in-place fashion too, by providing the same input
   and output blobs.
 
@@ -3655,28 +3644,28 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>1-D input tensor</dd>
+<dd>A 1-D input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The softsign (x/1+|x|) values of the input tensor computed element-wise</dd>
+<dd>The softsign (x/1+|x|) values of the input tensor computed element-wise.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="SpaceToDepth"></a><a name="spacetodepth">**SpaceToDepth**</a>
 
-  SpaceToDepth rearranges blocks of spatial data into depth. More specifically, 
-  this op outputs a copy of the input tensor where values from the height and width dimensions 
+  SpaceToDepth rearranges blocks of spatial data into depth. More specifically,
+  this operator outputs a copy of the input tensor where values from the height and width dimensions
   are moved to the depth dimension.
 
 #### Attributes
@@ -3690,28 +3679,28 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor of [N,C,H,W], where N is the batch axis, C is the channel or depth, H is the height and W is the width.</dd>
+<dd>An input tensor of [N,C,H,W], where N is the batch axis, C is the channel or depth, H is the height and W is the width.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of [N, C * blocksize * blocksize, H/blocksize, W/blocksize].</dd>
+<dd>An output tensor of [N, C * blocksize * blocksize, H/blocksize, W/blocksize].</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input types to float tensors.</dd>
+<dd>Constrains input types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Split"></a><a name="split">**Split**</a>
 
-  Split a tensor into a list of tensors, along the specified
-  'axis'. The lengths of the split can be specified using argument 'axis' or
+  This operator splits a tensor into a list of tensors, along a specified
+  'axis'. The lengths of the split can be specified using the argument 'axis' or
   optional second input blob to the operator. Otherwise, the tensor is split
   to equal sized parts.
 
@@ -3719,73 +3708,73 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>Which axis to split on</dd>
+<dd>The axis to split on.</dd>
 <dt><tt>split</tt> : list of ints</dt>
-<dd>length of each output</dd>
+<dd>The length of each output.</dd>
 </dl>
 
 #### Inputs (1 - 2)
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The tensor to split</dd>
+<dd>The tensor to split.</dd>
 <dt><tt>split</tt> : T</dt>
-<dd>Optional list of output lengths (see also arg 'split')</dd>
+<dd>An optional list of output lengths (see also arg 'split').</dd>
 </dl>
 
 #### Outputs (1 - &#8734;)
 
 <dl>
 <dt><tt>outputs...</tt> : T</dt>
-<dd>One or more outputs forming list of tensors after splitting</dd>
+<dd>One or more outputs forming a list of tensors after splitting.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input types to float tensors.</dd>
+<dd>Constrains input types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Sqrt"></a><a name="sqrt">**Sqrt**</a>
 
-  Square root takes one input data (Tensor<T>) and produces one output data
-  (Tensor<T>) where the square root is, y = x^0.5, is applied to
+  Sqrt (Square root) takes one input data (Tensor<T>) and produces one output data
+  (Tensor<T>), where the square root, y = x^0.5, is applied to
   the tensor elementwise. If x is negative, then it will return NaN.
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Squeeze"></a><a name="squeeze">**Squeeze**</a>
 
-  Remove single-dimensional entries from the shape of a tensor.
-  Takes a  parameter `axes` with a list of axes to squeeze.
+  Squeeze removes single-dimensional entries from the shape of a tensor.
+  The parameter `axes` indicates the dimensions to squeeze.
 
 #### Attributes
 
 <dl>
 <dt><tt>axes</tt> : list of ints (required)</dt>
-<dd>List of positive integers, indicate the dimensions to squeeze.</dd>
+<dd>A list of positive integers indicating the dimensions to squeeze.</dd>
 </dl>
 
 #### Inputs
@@ -3799,36 +3788,36 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>squeezed</tt> : T</dt>
-<dd>Reshaped tensor with same data as input.</dd>
+<dd>A reshaped tensor with the same data as the input.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Sub"></a><a name="sub">**Sub**</a>
 
-  Performs element-wise binary subtraction (with limited broadcast support).
-  
-  If necessary the right-hand-side argument will be broadcasted to match the
+  Sub performs element-wise binary subtraction (with limited broadcast support).
+
+  If necessary, the right-hand-side argument will be broadcasted to match the
   shape of left-hand-side argument. When broadcasting is specified, the second
-  tensor can either be of size 1 (a scalar value), or having its shape as a
+  tensor can either be of size 1 (a scalar value), or have its shape as a
   contiguous subset of the first tensor's shape. The starting of the mutually
   equal shape is specified by the argument "axis", and if it is not set, suffix
   matching is assumed. 1-dim expansion doesn't work yet.
-  
+
   For example, the following tensor shapes are supported (with broadcast=1):
-  
+
     shape(A) = (2, 3, 4, 5), shape(B) = (,), i.e. B is a scalar
     shape(A) = (2, 3, 4, 5), shape(B) = (5,)
     shape(A) = (2, 3, 4, 5), shape(B) = (4, 5)
     shape(A) = (2, 3, 4, 5), shape(B) = (3, 4), with axis=1
     shape(A) = (2, 3, 4, 5), shape(B) = (2), with axis=0
-  
+
   Attribute `broadcast=1` needs to be passed to enable broadcasting.
 
 #### Attributes
@@ -3837,36 +3826,36 @@ expect(node, inputs=[x], outputs=[y],
 <dt><tt>axis</tt> : int</dt>
 <dd>If set, defines the broadcast dimensions. See doc for details.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Pass 1 to enable broadcasting</dd>
+<dd>Pass 1 to enable broadcasting.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>A</tt> : T</dt>
-<dd>First operand, should share the type with the second operand.</dd>
+<dd>The first operand. It should share the type with the second operand.</dd>
 <dt><tt>B</tt> : T</dt>
-<dd>Second operand. With broadcasting can be of smaller size than A. If broadcasting is disabled it should be of the same size.</dd>
+<dd>The second operand. With broadcasting, this can a smaller size than A. If broadcasting is disabled, it should be of the same size.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>C</tt> : T</dt>
-<dd>Result, has same dimensions and type as A</dd>
+<dd>The result, which has the same dimensions and type as A.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Sum"></a><a name="sum">**Sum**</a>
 
-  Element-wise sum of each of the input tensors. The first input tensor can be
+  The element-wise sum of each of the input tensors. The first input tensor can be
   used in-place as the output tensor, in which case the sum will be done in
   place and results will be accumulated in input0. All inputs and outputs must
   have the same shape and data type.
@@ -3875,27 +3864,27 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>data_0</tt> : T</dt>
-<dd>First of the input tensors. Can be inplace.</dd>
+<dd>The first of the input tensors. Can be inplace.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>sum</tt> : T</dt>
-<dd>Output tensor. Same dimension as inputs.</dd>
+<dd>The output tensor. Same dimension as inputs.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Tanh"></a><a name="tanh">**Tanh**</a>
 
-  Calculates the hyperbolic tangent of the given input tensor element-wise. This
+  Tanh calculates the hyperbolic tangent of the given input tensor element-wise. This
   operation can be done in an in-place fashion too, by providing the same input
   and output blobs.
 
@@ -3903,57 +3892,57 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>1-D input tensor</dd>
+<dd>A 1-D input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The hyperbolic tangent values of the input tensor computed element-wise</dd>
+<dd>The hyperbolic tangent values of the input tensor computed element-wise.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Tile"></a><a name="tile">**Tile**</a>
 
-  Repeat the elements of a tensor along an axis.
+  Tile repeats the elements of a tensor along an axis.
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor of any shape.</dd>
+<dd>An input tensor of any shape.</dd>
 <dt><tt>tiles</tt> : T</dt>
-<dd>Number of repeated copies to make of the input tensor.</dd>
+<dd>A number of repeated copies to make of the input tensor.</dd>
 <dt><tt>axis</tt> : T</dt>
-<dd>Axis along which to repeat.</dd>
+<dd>An axis along which to repeat.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of same shape and type as input.</dd>
+<dd>An output tensor of same shape and type as input.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input types to float tensors.</dd>
+<dd>Constrains input types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Transpose"></a><a name="transpose">**Transpose**</a>
 
-  Transpose the input tensor similar to numpy.transpose. For example, when
+  This operator transposes the input tensor (similar to numpy.transpose). For example, with
   axes=(1, 0, 2), given an input tensor of shape (1, 2, 3), the output shape
   will be (2, 1, 3).
 
@@ -3975,24 +3964,24 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>transposed</tt> : T</dt>
-<dd>Transposed output.</dd>
+<dd>The transposed output.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Xor"></a><a name="xor">**Xor**</a>
 
-  Returns the tensor resulted from performing the `xor` logical operation
+  Xor returns the tensor resulted from performing the `xor` logical operation
   elementwise on the input tensors `A` and `B`.
-  
+
   If broadcasting is enabled, the right-hand-side argument will be broadcasted
-  to match the shape of left-hand-side argument. See the doc of `Add` for a
+  to match the shape of left-hand-side argument. See the documentation on `Add` for a
   detailed description of the broadcasting rules.
 
 #### Attributes
@@ -4001,7 +3990,7 @@ expect(node, inputs=[x], outputs=[y],
 <dt><tt>axis</tt> : int</dt>
 <dd>If set, defines the broadcast dimensions.</dd>
 <dt><tt>broadcast</tt> : int</dt>
-<dd>Enable broadcasting</dd>
+<dd>Enables broadcasting.</dd>
 </dl>
 
 #### Inputs
@@ -4017,7 +4006,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>C</tt> : T1</dt>
-<dd>Result tensor.</dd>
+<dd>The result tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -4032,9 +4021,9 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="ATen"></a><a name="aten">**<sub>experimental</sub> ATen**</a>
 
-  Experimental allowing ATen operations to be accessed directly from Caffe2
-  to allow for quick prototyping when ONNX is missing standard versions of
-  and op
+  An experimental operator that allows ATen operations to be accessed directly from Caffe2
+  for quick prototyping when ONNX is missing standard versions of
+  an operator.
 
 #### Inputs (0 - &#8734;)
 
@@ -4056,30 +4045,30 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>alpha</tt> : float</dt>
-<dd>Value of alpha</dd>
+<dd>The value of alpha.</dd>
 <dt><tt>beta</tt> : float</dt>
-<dd>Value of beta</dd>
+<dd>The value of beta.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>1D input tensor</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>1D output tensor</dd>
+<dd>A 1D output tensor.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4087,34 +4076,34 @@ expect(node, inputs=[x], outputs=[y],
 
   The operator fills the elements of the output tensor with a constant value
   specified by the 'value' attribute.
-  
+
   The data type is specified by the 'dtype' attribute. The 'dtype' attribute must
   be one of the data types specified in the 'DataType' enum field in the
   TensorProto message. If the 'dtype' attribute is not provided, the data type of
   'value' is used.
-  
+
   The output tensor shape is specified by the 'shape' attribute. If the number of
   input is 1, the shape will be identical to that of the input at run time with
   optional additional dimensions appended at the end as specified by 'extra_shape'
   attribute. In that case the 'shape' attribute should not be set.
-  
+
   If input_as_shape is set to true, then the input should be a 1D tensor
   containing the desired output shape (the dimensions specified in extra_shape
-  will also be appended)
-  
+  will also be appended).
+
   NOTE: Currently, it supports data type of float, int32, int64, and bool.
 
 #### Attributes
 
 <dl>
 <dt><tt>dtype</tt> : int</dt>
-<dd>The data type for the elements of the output tensor.Strictly must be one of the types from DataType enum in TensorProto.</dd>
+<dd>The data type for the elements of the output tensor. This must be strictly from DataType enum in TensorProto.</dd>
 <dt><tt>extra_shape</tt> : list of ints</dt>
-<dd>The additional dimensions appended at the end of the shape indicatedby the input blob.Cannot set the extra_shape argument when there is no input blob.</dd>
+<dd>The additional dimensions appended at the end of the shape indicatedby the input blob. This cannot set the extra_shape argument when there is no input blob.</dd>
 <dt><tt>input_as_shape</tt> : int</dt>
-<dd>1D tensor containing the desired output shape.  First input must be in CPU context.</dd>
+<dd>A 1D tensor containing the desired output shape.  First input must be in CPU context.</dd>
 <dt><tt>shape</tt> : list of ints</dt>
-<dd>The shape of the output tensor.Cannot set the shape argument and pass in an input at the same time.</dd>
+<dd>The shape of the output tensor. This cannot set the shape argument and pass in an input at the same time.</dd>
 <dt><tt>value</tt> : float</dt>
 <dd>The value for the elements of the output tensor.</dd>
 </dl>
@@ -4123,66 +4112,66 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> (optional) : T1</dt>
-<dd>Input tensor (optional) to provide shape information.</dd>
+<dd>An input tensor (optional) to provide shape information.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T2</dt>
-<dd>Output tensor of constant values specified by 'value'argument and its type is specified by the 'dtype' argument</dd>
+<dd>An output tensor of constant values specified by the 'value' argument, and its type specified by the 'dtype' argument</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T1</tt> : tensor(float), tensor(int32), tensor(int64), tensor(bool)</dt>
-<dd>Constrain input types to float, int32, int64, bool tensors.</dd>
+<dd>Constrains input types to float, int32, int64, bool tensors.</dd>
 <dt><tt>T2</tt> : tensor(float), tensor(int32), tensor(int64), tensor(bool)</dt>
-<dd>Constrain output types to float, int32, int64, bool tensors.</dd>
+<dd>Constrains output types to float, int32, int64, bool tensors.</dd>
 </dl>
 
 
 ### <a name="Crop"></a><a name="crop">**<sub>experimental</sub> Crop**</a>
 
-  Crop and image to the specified spatial dimensions. If scale is given, 
-  then optionally start the crop offset by the left/top border amounts. 
+  This operator crops an image to the specified spatial dimensions. If scale is given,
+  then optionally start the crop offset by the left/top border amounts.
   If scale is not provided, crop the borders as provided.
 
 #### Attributes
 
 <dl>
 <dt><tt>border</tt> : list of ints</dt>
-<dd>A 1-D values of (leftBorder, topBorder, rightBorder, bottomBorder).</dd>
+<dd>A 1-D value of (leftBorder, topBorder, rightBorder, bottomBorder).</dd>
 <dt><tt>scale</tt> : list of ints</dt>
-<dd>A 1-D values of (height, width).</dd>
+<dd>A 1-D value of (height, width).</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor of shape [N,C,H,W]</dd>
+<dd>An input tensor of shape [N,C,H,W].</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Result, has same type as input, with H and W dimensions reduced.</dd>
+<dd>The result with the same type as input, and H and W dimensions reduced.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="Embedding"></a><a name="embedding">**<sub>experimental</sub> Embedding**</a>
 
-  Turns positive integers (indexes) into dense vectors of fixed size.
+  Embedding turns positive integers (indexes) into dense vectors of fixed size.
 
 #### Attributes
 
@@ -4213,7 +4202,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain output types to float tensors.</dd>
+<dd>Constrains output types to float tensors.</dd>
 </dl>
 
 
@@ -4268,7 +4257,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4305,14 +4294,14 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>hidden</tt> : T</dt>
-<dd>The new GRU hidden state calculated by this op.</dd>
+<dd>The new GRU hidden state calculated by this operator.</dd>
 </dl>
 
 #### Type Constraints
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4349,7 +4338,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4375,13 +4364,13 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
 ### <a name="ImageScaler"></a><a name="imagescaler">**<sub>experimental</sub> ImageScaler**</a>
 
-  Scale and bias the input image. Bias values are stored in 
+  Scale and bias the input image. Bias values are stored in
   the same ordering as the image pixel format.
 
 #### Attributes
@@ -4411,7 +4400,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4446,7 +4435,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4483,7 +4472,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4525,7 +4514,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(bool), tensor(int32), tensor(int64), tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain output types to bool, int32, int64, float16, float, double tensors.</dd>
+<dd>Constrains output types to bool, int32, int64, float16, float, double tensors.</dd>
 </dl>
 
 
@@ -4559,7 +4548,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4568,7 +4557,7 @@ expect(node, inputs=[x], outputs=[y],
   Calculates the scaled hyperbolic tangent of the given input tensor element-wise,
   scale * tanh(x). This operation can be done in an in-place fashion too,
   by providing the same input and output blobs.
-      
+
 
 #### Attributes
 
@@ -4595,7 +4584,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
 
 
@@ -4630,7 +4619,5 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>T</tt> : tensor(float16), tensor(float), tensor(double)</dt>
-<dd>Constrain input and output types to float tensors.</dd>
+<dd>Constrains input and output types to float tensors.</dd>
 </dl>
-
-
