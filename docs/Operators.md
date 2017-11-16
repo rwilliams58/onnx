@@ -117,14 +117,14 @@
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -318,7 +318,7 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>reduced</tt> : T</dt>
-<dd>Reduced output tensor with integer data type.</dd>
+<dd>A reduced output tensor with integer data type.</dd>
 </dl>
 
 #### Type Constraints
@@ -433,22 +433,22 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>A 4-dimensional tensor of shape NCHW or NHWC depending on the order parameter.</dd>
+<dd>A 4D input tensor of shape NCHW or NHWC depending on the order parameter.</dd>
 <dt><tt>scale</tt> : T</dt>
-<dd>The scale as a 1-dimensional tensor of size C, applied to the output.</dd>
+<dd>The scale as a 1D tensor of size C, applied to the output.</dd>
 <dt><tt>bias</tt> : T</dt>
-<dd>The bias as a 1-dimensional tensor of size C, applied to the output.</dd>
+<dd>The bias as a 1D tensor of size C, applied to the output.</dd>
 <dt><tt>mean</tt> : T</dt>
-<dd>The running mean (training) or the estimated mean (testing) as a 1-dimensional tensor of size C.</dd>
+<dd>The running mean (training) or the estimated mean (testing) as a 1D tensor of size C.</dd>
 <dt><tt>var</tt> : T</dt>
-<dd>The running variance (training) or the estimated variance (testing) as a 1-dimensional tensor of size C.</dd>
+<dd>The running variance (training) or the estimated variance (testing) as a 1D tensor of size C.</dd>
 </dl>
 
 #### Outputs (0 - &#8734;)
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>The output 4-dimensional tensor of the same shape as X.</dd>
+<dd>The output 4D tensor of the same shape as X.</dd>
 <dt><tt>mean</tt> : T</dt>
 <dd>The running mean after the BatchNormalization operator. Must be in-place with the input mean. This should not be used for testing.</dd>
 <dt><tt>var</tt> : T</dt>
@@ -489,14 +489,14 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>input</tt> : T1</dt>
-<dd>Input tensor to be cast.</dd>
+<dd>An input tensor to be cast.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T2</dt>
-<dd>Output tensor with the same shape as input, with the type specified by the 'to' argument</dd>
+<dd>An output tensor with the same shape as input, with the type specified by the 'to' argument.</dd>
 </dl>
 
 #### Type Constraints
@@ -519,14 +519,14 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -558,14 +558,14 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The input tensor whose elements are to be clipped.</dd>
+<dd>An input tensor whose elements are to be clipped.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The output tensor with clipped input elements.</dd>
+<dd>An output tensor with clipped input elements.</dd>
 </dl>
 
 #### Type Constraints
@@ -598,7 +598,7 @@ expect(node, inputs=[x, y], outputs=[x + y],
 
 <dl>
 <dt><tt>concat_result</tt> : T</dt>
-<dd>The concatenated tensor.</dd>
+<dd>A concatenated tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -983,7 +983,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The input tensor.</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
@@ -1164,7 +1164,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input sequences packed (and potentially padded) into one 3-D tensor with the shape of `[seq_length, batch_size, input_size]`.</dd>
+<dd>The input sequences packed (and potentially padded) into one 3D tensor with the shape of `[seq_length, batch_size, input_size]`.</dd>
 <dt><tt>W</tt> : T</dt>
 <dd>The weight tensor for the gates. Concatenation of `W[zrh]` and `WB[zrh]` (if bidirectional) along dimension 0. This tensor has shape `[num_directions, 3*hidden_size, input_size]`.</dd>
 <dt><tt>R</tt> : T</dt>
@@ -1308,7 +1308,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>An input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
@@ -1343,7 +1343,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>An input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are in the form of (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
@@ -1371,7 +1371,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
+<dd>An input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data. For non-images, the dimensions are (N x C x D1 x D2 ... Dn), where N is the batch size.</dd>
 </dl>
 
 #### Outputs
@@ -1452,7 +1452,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input tensor.</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
@@ -1473,11 +1473,11 @@ expect(node, inputs=[], outputs=[values],
 ### <a name="Hardmax"></a><a name="hardmax">**Hardmax**</a>
 
   The operator computes the hardmax normalized values for each layer in the batch
-   of the given input. The input is a 2-D tensor (Tensor<float>) of size
+   of the given input. The input is a 2D tensor (Tensor<float>) of size
   (batch_size x input_feature_dimensions). The output tensor has the same shape
   and contains the hardmax normalized values of the corresponding input.
 
-  X does not need to explicitly be a 2-D vector; it will be
+  X does not need to explicitly be a 2D vector; it will be
   made into one. For an arbitrary n-dimensional tensor
   X \in [a_0, a_1, ..., a_{k-1}, a_k, ..., a_{n-1}] and k is
   the axis provided, then X will be made into a 2-dimensional tensor with
@@ -1499,7 +1499,7 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The input tensor that is made into a 2D matrix of size (NxD), as described above.</dd>
+<dd>An input tensor that is made into a 2D matrix of size (NxD), as described above.</dd>
 </dl>
 
 #### Outputs
@@ -1537,11 +1537,11 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>The input 4-dimensional tensor of shape NCHW.</dd>
+<dd>An input 4-dimensional tensor of shape NCHW.</dd>
 <dt><tt>scale</tt> : T</dt>
-<dd>The input 1-dimensional scale tensor of size C.</dd>
+<dd>An input 1-dimensional scale tensor of size C.</dd>
 <dt><tt>bias</tt> : T</dt>
-<dd>The input 1-dimensional bias tensor of size C.</dd>
+<dd>An input 1-dimensional bias tensor of size C.</dd>
 </dl>
 
 #### Outputs
@@ -1582,14 +1582,14 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input tensor.</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>The output tensor.</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -1712,21 +1712,21 @@ expect(node, inputs=[], outputs=[values],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input sequences packed (and potentially padded) into a single 3-D tensor with the shape `[seq_length, batch_size, input_size]`.</dd>
+<dd>Input sequences packed (and potentially padded) into a single 3D tensor with the shape `[seq_length, batch_size, input_size]`.</dd>
 <dt><tt>W</tt> : T</dt>
-<dd>The weight tensor for the gates. Concatenation of `W[iofc]` and `WB[iofc]` (if bidirectional) along dimension 0. The tensor has the shape `[num_directions, 4*hidden_size, input_size]`.</dd>
+<dd>A weight tensor for the gates. Concatenation of `W[iofc]` and `WB[iofc]` (if bidirectional) along dimension 0. The tensor has the shape `[num_directions, 4*hidden_size, input_size]`.</dd>
 <dt><tt>R</tt> : T</dt>
-<dd>The recurrence weight tensor. Concatenation of `R[iofc]` and `RB[iofc]` (if bidirectional) along dimension 0. This tensor has the shape `[num_directions, 4*hidden_size, hidden_size]`.</dd>
+<dd>A recurrence weight tensor. Concatenation of `R[iofc]` and `RB[iofc]` (if bidirectional) along dimension 0. This tensor has the shape `[num_directions, 4*hidden_size, hidden_size]`.</dd>
 <dt><tt>bias</tt> (optional) : T</dt>
-<dd>The bias tensor for the input gate. Concatenation of `[Wb[iofc], Rb[iofc]]` and `[WBb[iofc], RBb[iofc]]` (if bidirectional) along dimension 0. This tensor has the shape `[num_directions, 8*hidden_size]`. Optional: If this isn't specified, it's assumed to be 0.</dd>
+<dd>A bias tensor for the input gate. Concatenation of `[Wb[iofc], Rb[iofc]]` and `[WBb[iofc], RBb[iofc]]` (if bidirectional) along dimension 0. This tensor has the shape `[num_directions, 8*hidden_size]`. Optional: If this isn't specified, it's assumed to be 0.</dd>
 <dt><tt>sequence_lens</tt> (optional) : T1</dt>
-<dd>Optional tensor specifying lengths of the sequences in a batch. If this isn't specified, it's assumed all sequences in the batch have length `seq_length`. It has the shape `[batch_size]`.</dd>
+<dd>An optional tensor specifying lengths of the sequences in a batch. If this isn't specified, it's assumed all sequences in the batch have length `seq_length`. It has the shape `[batch_size]`.</dd>
 <dt><tt>initial_h</tt> (optional) : T</dt>
-<dd>Optional initial value of the hidden. If this isn't specified it's assumed to be 0. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>An optional initial value of the hidden. If this isn't specified it's assumed to be 0. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
 <dt><tt>initial_c</tt> (optional) : T</dt>
-<dd>Optional initial value of the cell. If this isn't specified it's assumed to be 0. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
+<dd>An optional initial value of the cell. If this isn't specified it's assumed to be 0. It has the shape `[num_directions, batch_size, hidden_size]`.</dd>
 <dt><tt>P</tt> (optional) : T</dt>
-<dd>The weight tensor for peepholes. It is the concatenation of `P[iof]` and `PB[iof]` (if bidirectional) along dimension 0. It has the shape `[num_directions, 3*hidde_size]`. Optional: If this isn't specified, it's assumed to be 0.</dd>
+<dd>A weight tensor for peepholes. It is the concatenation of `P[iof]` and `PB[iof]` (if bidirectional) along dimension 0. It has the shape `[num_directions, 3*hidde_size]`. Optional: If this isn't specified, it's assumed to be 0.</dd>
 </dl>
 
 #### Outputs (1 - 2)
@@ -1858,7 +1858,7 @@ expect(node, inputs=[], outputs=[values],
 ### <a name="LogSoftmax"></a><a name="logsoftmax">**LogSoftmax**</a>
 
   The operator computes the logsoftmax normalized values for each layer in the batch
-   of the given input. The input is a 2-D tensor (Tensor<float>) of size
+   of the given input. The input is a 2D tensor (Tensor<float>) of size
   (batch_size x input_feature_dimensions). The output tensor has the same shape
   and contains the logsoftmax normalized values of the corresponding input.
 
@@ -2122,7 +2122,7 @@ expect(node, inputs=[a, b], outputs=[c],
 ### <a name="MaxRoiPool"></a><a name="maxroipool">**MaxRoiPool**</a>
 
   MaxRoiPool consumes an input tensor X and Regions of Interest (RoIs) to
-   apply max pooling across each RoI, producing a 4-D tensor of shape
+   apply max pooling across each RoI, producing a 4D tensor of shape
    (num_rois, channels, pooled_shape[0], pooled_shape[1]).
 
 #### Attributes
@@ -2140,14 +2140,14 @@ expect(node, inputs=[a, b], outputs=[c],
 <dt><tt>X</tt> : T</dt>
 <dd>The input data tensor from the previous operator. The dimensions for images are (N x C x H x W), where N is the batch size, C is the number of channels, and H and W are the height and the width of the data.</dd>
 <dt><tt>rois</tt> : T</dt>
-<dd>The RoI to pool over. This should be a 2-D tensor of shape (num_rois, 5) given as [[batch_id, x1, y1, x2, y2], ...].</dd>
+<dd>The RoI to pool over. This should be a 2D tensor of shape (num_rois, 5) given as [[batch_id, x1, y1, x2, y2], ...].</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>RoI pooled output 4-D tensor of shape (num_rois, channels, pooled_shape[0], pooled_shape[1]).</dd>
+<dd>RoI pooled output 4D tensor of shape (num_rois, channels, pooled_shape[0], pooled_shape[1]).</dd>
 </dl>
 
 #### Type Constraints
@@ -2280,14 +2280,14 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input tensor.</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>The output tensor.</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -2300,7 +2300,7 @@ expect(node, inputs=[a, b], outputs=[c],
 
 ### <a name="Not"></a><a name="not">**Not**</a>
 
-  Returns the negation of the input tensor element-wise.
+  This operator returns the negation of the input tensor element-wise.
 
 #### Inputs
 
@@ -2379,9 +2379,9 @@ expect(node, inputs=[a, b], outputs=[c],
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input tensor.</dd>
+<dd>An input tensor.</dd>
 <dt><tt>slope</tt> : T</dt>
-<dd>The slope tensor. If `Slope` is of size 1, the value is sharedacross different channels.</dd>
+<dd>A slope tensor. If `Slope` is of size 1, the value is sharedacross different channels.</dd>
 </dl>
 
 #### Outputs
@@ -2629,11 +2629,11 @@ for mode in ['edge', 'reflect']:
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The input sequences packed (and potentially padded) into one 3-D tensor with the shape of `[seq_length, batch_size, input_size]`.</dd>
+<dd>The input sequences packed (and potentially padded) into one 3D tensor with the shape of `[seq_length, batch_size, input_size]`.</dd>
 <dt><tt>W</tt> : T</dt>
-<dd>The weight tensor for input gate. Concatenation of `Wi` and `WBi` (if bidirectional). The tensor has shape `[num_directions, hidden_size, input_size]`.</dd>
+<dd>A weight tensor for input gate. Concatenation of `Wi` and `WBi` (if bidirectional). The tensor has shape `[num_directions, hidden_size, input_size]`.</dd>
 <dt><tt>R</tt> : T</dt>
-<dd>The recurrence weight tensor. Concatenation of `Ri` and `RBi` (if bidirectional). The tensor has shape `[num_directions, hidden_size, hidden_size]`.</dd>
+<dd>A recurrence weight tensor. Concatenation of `Ri` and `RBi` (if bidirectional). The tensor has shape `[num_directions, hidden_size, hidden_size]`.</dd>
 <dt><tt>bias</tt> (optional) : T</dt>
 <dd>The bias tensor for input gate. Concatenation of `[Wbi, Rbi]` and `[WBbi, RBbi]` (if bidirectional). The tensor has shape `[num_directions, 2*hidden_size]`. Optional: If not specified - assumed to be 0.</dd>
 <dt><tt>sequence_lens</tt> (optional) : T1</dt>
@@ -2945,7 +2945,7 @@ for mode in ['edge', 'reflect']:
 
 ### <a name="ReduceLogSum"></a><a name="reducelogsum">**ReduceLogSum**</a>
 
-  Computes the log sum of the input tensor's element along the provided axes. The resulted
+  ReduceLogSum computes the log sum of the input tensor's element along the provided axes. The resulted
   tensor has the same rank as the input if keepdims equal 1. If keepdims equal 0, then
   the resulted tensor have the reduced dimension pruned.
 
@@ -3562,7 +3562,7 @@ expect(node, inputs=[x], outputs=[y],
 ### <a name="Softmax"></a><a name="softmax">**Softmax**</a>
 
   Softmax computes the softmax normalized values for each layer in the batch
-   of the given input. The input is a 2-D tensor (Tensor<float>) of size
+   of the given input. The input is a 2D tensor (Tensor<float>) of size
   (batch_size x input_feature_dimensions). The output tensor has the same shape
   and contains the softmax normalized values of the corresponding input.
 
@@ -3644,7 +3644,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>A 1-D input tensor.</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Outputs
@@ -3892,7 +3892,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>A 1-D input tensor.</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Outputs
@@ -4142,9 +4142,9 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>border</tt> : list of ints</dt>
-<dd>A 1-D value of (leftBorder, topBorder, rightBorder, bottomBorder).</dd>
+<dd>A 1D value of (leftBorder, topBorder, rightBorder, bottomBorder).</dd>
 <dt><tt>scale</tt> : list of ints</dt>
-<dd>A 1-D value of (height, width).</dd>
+<dd>A 1D value of (height, width).</dd>
 </dl>
 
 #### Inputs
@@ -4181,21 +4181,21 @@ expect(node, inputs=[x], outputs=[y],
 <dt><tt>output_dim</tt> : int</dt>
 <dd>Dimension of the embedding output vectors.</dd>
 <dt><tt>weights</tt> : tensor</dt>
-<dd>2-D tensor of weights [O,I].</dd>
+<dd>2D tensor of weights [O,I].</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : tensor(int64)</dt>
-<dd>1-D tensor of integers representing indices in the embedding dictionary with length [N] and values [0, input_dim -1]</dd>
+<dd>A 1D tensor of integers representing indices in the embedding dictionary with length [N] and values [0, input_dim -1].</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output tensor of computed features [N, O].</dd>
+<dd>An output tensor of computed features [N, O].</dd>
 </dl>
 
 #### Type Constraints
@@ -4208,17 +4208,17 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="FC"></a><a name="fc">**<sub>experimental</sub> FC**</a>
 
-  Computes the result of passing an input vector X into a fully
+  FC computes the result of passing an input vector X into a fully
   connected layer with 2D weight matrix W and 1D bias vector b. That is,
   the layer computes Y = X * W^T + b, where X has size (M x K),
   W has size (N x K), b has size (N), and Y has size (M x N),
   where M is often the batch size.
-  NOTE: X does not need to explicitly be a 2D vector; rather, it will be
-  coerced into one. For an arbitrary n-dimensional tensor
+  NOTE: X does not need to explicitly be a 2D vector – rather, it will be
+  made into one. For an arbitrary n-dimensional tensor
   X \in [a_0, a_1, ...,a_{k-1}, a_k, ..., a_{n-1}] where a_i \in N+ and k is
-  the axis provided, then X will be coerced into a 2-dimensional tensor with
+  the axis provided, then X will be made into a 2-dimensional tensor with
   dimensions [a_0 * ... * a_{k-1}, a_k * ... * a_{n-1}]. For the default
-  case where axis=1, this means the X tensor will be coerced into a 2D tensor
+  case where axis=1, this means the X tensor will be made into a 2D tensor
   of dimensions [a_0, a_1 * ... * a_{n-1}], where a_0 is often the batch size.
   In this situation, we must have a_0 = M and a_1 * ... * a_{n-1} = K.
   Lastly, even though b is a 1D vector of size N, it is copied/resized to
@@ -4230,27 +4230,27 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>axis</tt> : int</dt>
-<dd>(int32_t) default to 1; describes the axis of the inputs; defaults to one because the 0th axis most likely describes the batch_size</dd>
+<dd>(int32_t, defaults to 1) Describes the axis of the inputs. This defaults to 1 because the 0th axis most likely describes the batch_size.</dd>
 <dt><tt>axis_w</tt> : int</dt>
-<dd>(int32_t) default to 1; describes the axis of the weights; defaults to one because the 0th axis most likely describes the batch_size</dd>
+<dd>(int32_t, defaults to 1) Describes the axis of the weights. This defaults to 1 because the 0th axis most likely describes the batch_size.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>input tensor that's coerced into a 2D matrix of size (MxK) as described above</dd>
+<dd>An input tensor that's made into a 2D matrix of size (MxK), as described above.</dd>
 <dt><tt>W</tt> : T</dt>
-<dd>2D blob of size (KxN) containing fully connected weight matrix</dd>
+<dd>A 2D blob of size (KxN) containing a fully connected weight matrix.</dd>
 <dt><tt>bias</tt> : T</dt>
-<dd>1D blob containing bias vector</dd>
+<dd>A 1D blob containing bias vector.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>2D output tensor</dd>
+<dd>A 2D output tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -4263,10 +4263,10 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="GRUUnit"></a><a name="gruunit">**<sub>experimental</sub> GRUUnit**</a>
 
-  GRUUnit computes the activations of a standard GRU,
+  GRUUnit computes the activations of a standard GRU
   in a sequence-length aware fashion.
-  Concretely, given the (fused) inputs X (TxNxD), the previous hidden
-  state (NxD), and the sequence lengths (N), computes the GRU
+  Specifically, given the (fused) inputs X (TxNxD), the previous hidden
+  state (NxD), and the sequence lengths (N), GRUUnit computes the GRU
   activations, avoiding computation if the input is invalid (as in, the
   value at X[t][n] >= seqLengths[n].
 
@@ -4274,7 +4274,7 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>drop_states</tt> : int</dt>
-<dd>Bool to determine if hidden state is zeroes or passed along for timesteps past the given sequence_length.</dd>
+<dd>A bool to determine if hidden state is zeroes or passed along for timesteps past the given sequence_length.</dd>
 </dl>
 
 #### Inputs
@@ -4285,7 +4285,7 @@ expect(node, inputs=[x], outputs=[y],
 <dt><tt>gates</tt> : T</dt>
 <dd>Unactivated gate outputs from forget, update, and output gates, pre-activation.</dd>
 <dt><tt>seq_lengths</tt> : T</dt>
-<dd>Array of sequence lengths.  len(seq_lengths) should equal batch size N.</dd>
+<dd>An array of sequence lengths.  len(seq_lengths) should equal batch size N.</dd>
 <dt><tt>t</tt> : T</dt>
 <dd>The timestep for this operation.</dd>
 </dl>
@@ -4324,14 +4324,14 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>shape</tt> : T</dt>
-<dd>The shape of filled tensor</dd>
+<dd>The shape of filled tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>The filled tensor</dd>
+<dd>The filled tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -4344,20 +4344,20 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="Identity"></a><a name="identity">**<sub>experimental</sub> Identity**</a>
 
-  Identity operator
+  An identify operator.
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Tensor to copy input into. Can be in-place</dd>
+<dd>A tensor to copy input into. Can be in-place.</dd>
 </dl>
 
 #### Type Constraints
@@ -4370,14 +4370,14 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="ImageScaler"></a><a name="imagescaler">**<sub>experimental</sub> ImageScaler**</a>
 
-  Scale and bias the input image. Bias values are stored in
+  ImageScaler scales and biases the input image. Bias values are stored in
   the same ordering as the image pixel format.
 
 #### Attributes
 
 <dl>
 <dt><tt>bias</tt> : list of floats</dt>
-<dd>Bias applied to each channel, same size as C.</dd>
+<dd>A bias applied to each channel, same size as C.</dd>
 <dt><tt>scale</tt> : float</dt>
 <dd>(float, default 1.0) the scale to apply.</dd>
 </dl>
@@ -4386,14 +4386,14 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor of shape [N,C,H,W]</dd>
+<dd>An input tensor of shape [N,C,H,W].</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Result, has same shape and type as input</dd>
+<dd>The result with the same shape and type as input.</dd>
 </dl>
 
 #### Type Constraints
@@ -4406,29 +4406,29 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="MeanVarianceNormalization"></a><a name="meanvariancenormalization">**<sub>experimental</sub> MeanVarianceNormalization**</a>
 
-  Perform mean variance normalization.
+  This operator performs mean variance normalization.
 
 #### Attributes
 
 <dl>
 <dt><tt>across_channels</tt> : int</dt>
-<dd>If 1, mean and variance are computed across channels. Default is 0.</dd>
+<dd>If 1, mean and variance are computed across channels. The default vlaue is 0.</dd>
 <dt><tt>normalize_variance</tt> : int</dt>
-<dd>If 0, normalize the mean only.  Default is 1.</dd>
+<dd>If 0, only the mean is normalized.  The default value is 1.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input tensor of shape [N,C,H,W]</dd>
+<dd>An input tensor of shape [N,C,H,W].</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Result, has same shape and type as input</dd>
+<dd>The result with the same shape and type as input.</dd>
 </dl>
 
 #### Type Constraints
@@ -4449,23 +4449,23 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>alpha</tt> : float</dt>
-<dd>Value of alpha</dd>
+<dd>The value of alpha.</dd>
 <dt><tt>beta</tt> : float</dt>
-<dd>Value of beta</dd>
+<dd>The value of beta.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>1D input tensor</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>1D input tensor</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Type Constraints
@@ -4478,7 +4478,7 @@ expect(node, inputs=[x], outputs=[y],
 
 ### <a name="ResizeNearest"></a><a name="resizenearest">**<sub>experimental</sub> ResizeNearest**</a>
 
-  Resize the width and height dimensions:
+  ResizeNearest resizes the width and height dimensions:
   output_width = floor(input_width * width_scale),
   output_height = floor(input_height * height_scale).
   For example:
@@ -4491,23 +4491,23 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>height_scale</tt> : float (required)</dt>
-<dd>The scale along height dimension</dd>
+<dd>The scale along height dimension.</dd>
 <dt><tt>width_scale</tt> : float (required)</dt>
-<dd>The scale along width dimension</dd>
+<dd>The scale along width dimension.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>4-D tensor, [N,C,H,W]</dd>
+<dd>A 4D tensor with shape [N,C,H,W].</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>4-D tensor after resizing, [N,C,H,W]</dd>
+<dd>A 4D tensor after resizing with shape[N,C,H,W].</dd>
 </dl>
 
 #### Type Constraints
@@ -4534,14 +4534,14 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>Input data to be scaled</dd>
+<dd>The input data to be scaled.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>Output data after scaling</dd>
+<dd>The output data after scaling.</dd>
 </dl>
 
 #### Type Constraints
@@ -4563,21 +4563,21 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>scale</tt> : float</dt>
-<dd>Scale for tanh</dd>
+<dd>A scale for tanh.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>input</tt> : T</dt>
-<dd>1-D input tensor</dd>
+<dd>A 1D input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>output</tt> : T</dt>
-<dd>The scaled hyperbolic tangent values of the input tensor computed element-wise</dd>
+<dd>The scaled hyperbolic tangent values of the input tensor, computed element-wise.</dd>
 </dl>
 
 #### Type Constraints
@@ -4598,21 +4598,21 @@ expect(node, inputs=[x], outputs=[y],
 
 <dl>
 <dt><tt>theta</tt> : float</dt>
-<dd>Threshold value</dd>
+<dd>A threshold value.</dd>
 </dl>
 
 #### Inputs
 
 <dl>
 <dt><tt>X</tt> : T</dt>
-<dd>Input tensor</dd>
+<dd>An input tensor.</dd>
 </dl>
 
 #### Outputs
 
 <dl>
 <dt><tt>Y</tt> : T</dt>
-<dd>Output tensor</dd>
+<dd>An output tensor.</dd>
 </dl>
 
 #### Type Constraints
